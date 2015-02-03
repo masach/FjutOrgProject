@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<options>
+  <option value="正省级（正部级）">正省级（正部级）</option>
+  <option value="副省级（副部级）">副省级（副部级）</option>
+  <option value="正厅级（地市级）">正厅级（地市级）</option>
+  <option value="副厅级">副厅级</option>
+  <option value="正处级">正处级</option>
+  <option value="副处级">副处级</option>
+  <option value="校聘副处">校聘副处</option>
+  <option value="正科级">正科级</option>
+  <option value="副科级">副科级</option>
+ </options>
