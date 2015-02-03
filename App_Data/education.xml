@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<educations>
+  <education value="其它">其它</education>
+  <education value="中专/职校">中专/职校</education>
+  <education value="大专">大专</education>
+  <education value="本科">本科</education>
+  <education value="硕士">硕士</education>
+  <education value="博士">博士</education>
+</educations>

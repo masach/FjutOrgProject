@@ -1,0 +1,367 @@
+/*
+model1 样式表
+comfill@163.com
+last modify:2004-11-29
+*/
+
+body{
+text-align:left;
+font:12px "宋体";
+overflow-x:visible;
+overflow-y:scroll
+}
+img{border:none;}
+
+.toolBar {
+	background:			ButtonFace;
+	border-style:		solid;
+	border-width:		1px;
+	border-left-color:	ButtonHighlight;
+	border-right-color:	ButtonShadow;
+	border-top-color:	ButtonHighlight;
+	border-bottom-color:ButtonShadow;
+}
+
+.title
+{
+border:none;
+font: bold 12px Tahoma, Verdana;
+color:#000;
+margin:0px 0px 0px 10px;
+}
+
+#fwgz{border:none}
+#fwgz th{
+font:normal 12px "宋体";
+color: #102958;
+padding:0;
+border-top: 1px solid #FFF;
+border-left: 1px solid #FFF;
+background:#C3D5F5
+}
+#fwgz td{
+font:12px "宋体";
+color: #333;
+padding:0;
+background:#E3EBFB;
+border-top: 1px solid #FFF;
+border-left: 1px solid #FFF;
+}
+#fwgz input{
+font:16px/28px "仿宋_GB2312";
+border:1px solid #ccc;
+height:28px;
+}
+/*
+input{   
+   background-color:expression((this.readOnly && this.readOnly==true)?"#C3D5F5":"#FFFFFF")
+}*/
+#fwgz textarea
+{
+font:16px "仿宋_GB2312";
+border:1px solid #ccc;
+}
+.m_select{width:200px}
+
+#xmfm{border:none}
+#xmfm th{
+font:normal 12px "宋体";
+color: #102958;
+padding:0;
+border-top: 1px solid #FFF;
+border-left: 1px solid #FFF;
+background:#C3D5F5
+}
+#xmfm td{
+font:12px "宋体";
+color: #333;
+padding:0;
+background:#E3EBFB;
+border-top: 1px solid #FFF;
+border-left: 1px solid #FFF;
+}
+
+#line{
+color:#086D9C;
+width:100%;
+}
+.tbtitle{
+background: #e9e9e0;
+font:bold 12px "宋体";
+color:#464639;
+}
+.tbtitle td{
+padding:3px 0px 0px 5px;
+border-bottom: 1px solid #bfbfbf;
+border-right: 1px solid #bfbfbf;
+height:25px;
+}
+.tbdata{
+background: #fafafa;
+font:12px "宋体";
+color:#3d3d3d;
+}
+.tbdata td{
+padding:3px 0px 0px 5px;
+border-top: 1px solid #FFF;
+border-left: 1px solid #FFF;
+border-bottom: 1px solid #bfbfbf;
+border-right: 1px solid #bfbfbf;
+height:20px;
+}
+
+.tbctr{
+background: #ECF0F2;
+font:12px "宋体";
+color:#3d3d3d;
+width:100%;
+border-bottom: 1px solid #bfbfbf;
+}
+.tbctr td{
+padding:3px 0px 0px 5px;
+height:20px;
+}
+.bt_ctr{margin:0px 10px 0px 10px;}
+.bt_ctr a{
+color: #990000;
+text-decoration: none;
+}
+.bt_ctr a:hover{text-decoration: underline;}
+.bt_ctr01{color:#900;margin:0px 5px 0px 5px;}
+
+.tbtitle td{text-align:center;}
+.btn{background:#f8f8f0;}
+#notice{padding:10px}
+
+#toolbar a{
+color: #000;
+font:12px "宋体";
+}
+#toolbar a:hover{color: #FFCC00;}
+#toolbar img{margin:0px 5px 1px 5px;}
+.toolbk{
+background: url(../images/w_toobarbk.gif) repeat-x;
+border-top: 1px solid #fafafa;
+border-left: 1px solid #fafafa;
+border-right: 1px solid #779FEC;
+border-bottom: 1px solid #7CA7F7;
+height:30px;
+}
+.toolbk2{
+border-top: 1px solid #7CA7F7;
+border-right: 1px solid #779FEC;
+border-bottom: 1px solid #7CA7F7;
+}
+
+.content{
+background: #E3EBFB;
+border-top: 1px solid #fafafa;
+border-left: 1px solid #D6E2F9;
+border-right: 1px solid #779FEC;
+border-bottom: 1px solid #7CA7F7;
+}
+
+.style2 {font-family: "仿宋_GB2312"; font-size: 16px; }
+.style6 {
+	font-size: 24px;
+	font-weight: bold;
+	font-family: "仿宋_GB2312";
+}
+.style8 {font-size: 14px; font-family: "仿宋_GB2312"; }
+.style9 {font-family: "仿宋_GB2312"}
+.style13 {font-size: medium; font-family: "仿宋_GB2312"; }
+.style14 {font-size: medium}
+.style18 {font-size: 16px; font-family: "仿宋_GB2312"; }
+.style23 {font-size: 18px; font-family: "仿宋_GB2312"; }
+.style25 {font-size: 16px}
+.textSize {font:normal 13px "宋体";}
+.text14 {FONT-FAMILY:宋体; FONT-SIZE:12pt; color:＃000000 ; text-decoration:underline}
+
+.text16 {FONT-FAMILY:宋体; FONT-SIZE:14pt; color:＃000000 ; text-decoration:underline}
+
+.text16_2 {FONT-FAMILY:宋体; FONT-SIZE:14pt; color:＃000000 }
+
+.text20 {FONT-FAMILY:宋体; FONT-SIZE:18pt; color:＃000000}	
+
+.text28 {FONT-FAMILY:宋体; FONT-SIZE:20pt; color:＃000000}
+-->
+.Text_bottom{
+    FONT-FAMILY:宋体;
+	font-size:13px;
+	border:0;	
+	background-color:transparent;
+	text-align:center;
+	border-bottom:1px solid #000;
+}
+/***************************
+    ie.css 控制页面输入
+****************************/
+.textfield_dis {
+	BEHAVIOR: url("/internet/htc/toolFunction.htc");
+	font-size: 12px;
+	color: #000000;
+	text-decoration: none;
+	background-color: #FFFEFD;
+	border: 1px solid #DFDFDF;
+	text-align:left;
+}
+/*  ↑左对齐的TextBox样式  */
+
+.textfield_right_dis {
+	BEHAVIOR: url("/internet/htc/toolFunction.htc");
+	font-size: 12px;
+	color: #000000;
+	text-decoration: none;
+	background-color: #FFFEFD;
+	border: 1px solid #DFDFDF;
+	text-align:right;
+}
+/*  ↑右对齐的TextBox样式  */
+
+.textfieldtint {
+	BEHAVIOR: url("/internet/htc/toolFunction.htc");
+	font-size: 12px;
+	color: #000000;
+	text-decoration: none;
+	background-color: #fffff9;
+	border: 1px solid #bdbdaf;
+}
+/*  ↑填充色为浅白色，有边框的TextBox样式  */
+
+.textfieldbasic {
+	BEHAVIOR: url("/internet/htc/toolFunction.htc");
+	font-size: 12px;
+	color: #000000;
+	text-decoration: none;
+	background-color: #FFFFE7;
+	border-top: 1px groove #96968E;
+	border-right: 1px groove #96968E;
+	border-bottom:1px groove #96968E;
+	border-left: 1px groove #96968E;
+}
+/*  ↑填充色为黄色，边框深色的TextBox样式  */
+
+.textfieldnoborder 
+{
+	text-decoration: none;
+	background-color: #FFFEFD;
+	border: 0px;
+}
+/*  ↑边框、填充色为背景色的TextBox样式  */
+
+.textareafield {
+	BEHAVIOR: url("/internet/htc/textbox.htc");
+	font-size: 12px;
+	color: #000000;
+	text-decoration: none;
+	background-color: #fffff9;
+	border: 1px solid #bdbdaf;
+}
+/*  ↑普通TextAreaField样式  */
+
+.textfieldsaturate 
+{
+	BEHAVIOR: url("/internet/htc/toolFunction.htc");
+	font-size: 12px;
+	color: #FF0000;
+	text-decoration: none;
+	background-color: #F4FAFF;
+	border: 1px solid #666666;
+}
+.textfieldsaturatespc 
+{
+	BEHAVIOR: url("/internet/htc/toolFunctionspc.htc");
+	font-size: 12px;
+	color: #000000;
+	text-decoration: none;
+	background-color: #F4FAFF;
+	border: 1px solid #666666;
+}
+/*  ↑深色背景TextBox样式  */
+
+.textfieldrf 
+{
+	BEHAVIOR: url("/internet/htc/masterdetail.htc");
+	font-size: 12px;
+	color: #000000;
+	text-decoration: none;
+	background-color: #F4FAFF;
+	border: 1px solid #666666;
+	text-align:right;
+}
+/*  ↑可编辑右对齐TextBox样式  */
+
+.selectdocument {
+	font-size: 12px;
+	color: #000000;
+	background-color: #FFFFE7;
+	border: 1px solid;
+}
+/*  ↑下拉选择框的样式  */
+
+.topic {
+	font-size: 18px;
+	font-weight: bolder;
+	color: #153989;
+	text-decoration: none;
+	height: 30px;
+}
+/*  ↑单据抬头标题单元格的样式  */
+
+.inputpositivenumber
+{
+  BEHAVIOR: url("/internet/htc/positivenumberinput.htc"); 
+}
+/*  ↑输入正的浮点数  */
+
+.inputnegativenumber
+{
+  BEHAVIOR: url("/internet/htc/negativenumberinput.htc"); 
+}
+/*  ↑输入无限制的浮点数  */
+
+.inputpositiveinteger
+{
+    BEHAVIOR: url("/internet/htc/positiveintegerinput.htc"); 
+}
+/*  ↑输入正整数  */
+
+.inputcode
+{
+  BEHAVIOR: url("/internet/htc/code.htc");  
+}
+/*  ↑输入数字字符串  */
+
+.inputnegativeinteger
+{
+  BEHAVIOR: url("/internet/htc/negativeintegerinput.htc");  
+}
+/*  ↑输入整数  */
+
+.SpcialIntegerInput
+{
+  BEHAVIOR: url("/internet/htc/SpcialIntegerInput.htc");  
+}
+/*  ↑输入整数,"0-9","-",","结报单专用,zhangchw_2003-07-16_add  */
+.SpcialIntegerInput1
+{
+  BEHAVIOR: url("/internet/htc/SpcialIntegerInput1.htc");  
+}
+/*  ↑输入整数,"0-9",";"结报单专用,zhangchw_2003-07-16_add  */
+.IdentityCodeInput
+{
+  BEHAVIOR: url("/internet/htc/masterdetail.htc");  
+}
+/*  ↑输入整数,"0-9","-",","结报单专用,zhangchw_2003-07-16_add  */
+.ValideInput
+{
+  BEHAVIOR: url("/internet/htc/IdentityCodeInput.htc");  
+}
+/*  ↑身份证号码,zkq_2005-09-22_add  */
+.ANDateTime 
+{
+	BEHAVIOR: url("/internet/htc/datetimeText.htc");
+}
+/*  ↑时间参照选框样式  */
+
+</style>

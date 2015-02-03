@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<subjects>
+
+  <subject value="数学">数学</subject>
+  <subject value="物理">物理</subject>
+  <subject value="化学（化工）">化学（化工）</subject>
+  <subject value="生物" >生物</subject>
+  <subject value="农林" >农林</subject>
+  <subject value="地理" >地理</subject>
+  <subject value="材料" >材料</subject>
+  <subject value="电子信息" >电子信息</subject>
+  <subject value="机电" >机电</subject>
+  <subject value="医药" >医药</subject>
+</subjects>
