@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<degrees>
-  
-  <degree value="博士">博士</degree>
-  <degree value="硕士">硕士</degree>
-  <degree value="学士">学士</degree>
-  <degree value="其他" >其他</degree>
-</degrees>
