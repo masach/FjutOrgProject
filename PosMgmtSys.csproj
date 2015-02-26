@@ -459,15 +459,6 @@
     <Content Include="frmStaffDetail1.aspx" />
     <Content Include="frmStaffDetail2.aspx" />
     <Content Include="frmStaffDetail3.aspx" />
-    <Content Include="副本 App_Data\city.xml" />
-    <Content Include="副本 App_Data\degree.xml" />
-    <Content Include="副本 App_Data\education.xml" />
-    <Content Include="副本 App_Data\nationality.xml" />
-    <Content Include="副本 App_Data\sciSubjectType.xml" />
-    <Content Include="副本 App_Data\socialSubjectType.xml" />
-    <Content Include="副本 App_Data\subjectNodes.xml" />
-    <Content Include="副本 App_Data\subjectNodes2.xml" />
-    <Content Include="副本 App_Data\title.xml" />
     <None Include="json\projectType.json" />
     <Content Include="js\cb2.js" />
     <Content Include="js\checkForm.js" />
@@ -3088,6 +3079,8 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Services\Staff.ashx" />
+    <None Include="resource\applicationForm.xls" />
+    <None Include="resource\summary.xls" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppCode\CommonKeys.cs" />
@@ -3823,17 +3816,12 @@
     <Content Include="resource\socialProject.dot" />
     <Content Include="Services\PosApplicantService.ashx" />
     <Content Include="packages.config" />
-    <None Include="resource\AllUnitData.xls" />
+    <None Include="resource\detail.xls" />
     <None Include="resource\ext-theme-access\Readme.md" />
     <None Include="resource\ext-theme-classic-sandbox\Readme.md" />
     <None Include="resource\ext-theme-classic\Readme.md" />
     <None Include="resource\ext-theme-gray\Readme.md" />
     <None Include="resource\ext-theme-neptune\Readme.md" />
-    <None Include="resource\单位主管操作手册.doc" />
-    <Content Include="resource\申报人员视频.zip" />
-    <Content Include="resource\单位主管视频.zip" />
-    <None Include="resource\申报用户操作手册.doc" />
-    <Content Include="resource\部门主管视频.zip" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

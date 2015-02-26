@@ -17,7 +17,7 @@ namespace EducationV2
         {
             if (!IsPostBack)
             {
-                ddlType.DataSource = SearchType.Types;
+                ddlType.DataSource = SearchType.AllTypes;
                 ddlType.DataBind();
                 GridView1.DataSourceID = null;
                 IEnumerable<ViewPosApl> datasource = getDatasource(false);
@@ -27,14 +27,14 @@ namespace EducationV2
                 if (Session[SessionMgm.Role].ToString().Equals(RoleType.Applicant) == false)
                 {
                     //btnAllRecord.Text = "查看审核通过";
-                    btnGenNotice.Visible = true;
+                //    btnGenNotice.Visible = true;
                     btnGenList.Visible = true;
                     btnGenCmprList.Visible = true;
                 }
                 else
                 {
-                    btnFilter.Visible = false;
-                    btnAllRecord.Visible = false;
+                  //  btnFilter.Visible = false;
+                  //  btnAllRecord.Visible = false;
                 }
             }
         }
@@ -91,6 +91,35 @@ namespace EducationV2
                             dt.Rows.RemoveAt(i);
                             i--;
                         }
+                    }
+                    else
+                    {
+                        DateTime selectedDate, inputDate;
+                        if (DateTime.TryParse(dt.Rows[i][ddlField.SelectedValue].ToString(), out selectedDate))
+                        {
+                            if (DateTime.TryParse(txtKeyword.Text, out inputDate) == false)
+                            {
+                                UtilHelper.AlertMsg("请输入合法的日期");
+                            }
+                            else
+                            {
+                                if (ddlType.SelectedValue.Equals(SearchType.Bigger))
+                                {
+                                    if (DateTime.Compare(selectedDate, inputDate) < 0)
+                                    {
+                                        dt.Rows.RemoveAt(i--);
+                                        
+                                    }
+                                        
+                                }
+                                else if (ddlType.SelectedValue.Equals(SearchType.Smaller))
+                                    if (DateTime.Compare(selectedDate, inputDate) > 0)
+                                        dt.Rows.RemoveAt(i--);
+                            }
+                        }
+                        else
+                            UtilHelper.AlertMsg("大小只能用于比较日期");
+
                     }
                 }
                 GridView1.DataSource = dt;
@@ -155,6 +184,151 @@ namespace EducationV2
             GridView1.DataBind();
         }
 
+        
+
+        /// <summary>
+        /// 获取在第N个志愿填报某岗位的人
+        /// </summary>
+        /// <param name="seq">第seq个志愿</param>
+        /// <param name="pos">岗位</param>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        private string getPersonWithWish(int seq, string pos, DataTable dt)
+        {
+            String filter = "F_pos" + seq + " = '" + pos +  "'";
+            DataRow[] drs = dt.Select(filter);
+            String result = "";
+            foreach (DataRow dr in drs)
+            {
+                result = result + dr["F_realName"].ToString() + " ";
+            }
+            return result;
+
+        }
+
+        private List<string> getAllPos(DataTable dt)
+        {
+            List<String> allPos = new List<string>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                for (int i = 1; i <= 3; i++)
+                {
+                    String pos = dr["F_pos" + i].ToString().Trim();
+                    if (pos.Length > 0 && !allPos.Contains(pos))
+                        allPos.Add(pos);
+                }
+            }
+            return allPos;
+        }
+        private void FillSummary(String fileName)
+        {
+            String templeteFile = Server.MapPath("/resource/summary.xls");
+            ExcelHelper helper = new ExcelHelper(templeteFile, fileName);
+            DataTable dt = Session[SessionMgm.DataSource] as DataTable;
+            List<String> allPos = getAllPos(dt);
+            if (allPos.Count > 1)
+                helper.CopyRows(3, allPos.Count - 1);
+            int row = 3;
+            for (int i = 0; i < allPos.Count; i++)
+            {
+                String first = getPersonWithWish(1, allPos[i], dt);
+                String second = getPersonWithWish(2, allPos[i], dt);
+                String third = getPersonWithWish(3, allPos[i], dt);
+                helper.SetCells(row + i, 1, (i + 1).ToString());
+                helper.SetCells(row + i, 2, allPos[i]);
+                helper.SetCells(row + i, 3, first);
+                helper.SetCells(row + i, 4, second);
+                helper.SetCells(row + i, 5, third);
+
+            }
+            helper.SaveAsFile(fileName);
+        }
+
+        private void FillDetail(String fileName)
+        {
+            String templeteFile = Server.MapPath("/resource/detail.xls");
+            ExcelHelper helper = new ExcelHelper(templeteFile, fileName);
+            DataTable dt = Session[SessionMgm.DataSource] as DataTable;
+            DataView dv = dt.DefaultView;
+            dv.Sort = "F_pos1 asc, F_pos2 asc, F_pos3 asc";
+            DataTable dtSorted = dv.ToTable();
+            int row = 3;
+            if (dtSorted.Rows.Count > 1)
+            {
+                helper.CopyRows(3, dtSorted.Rows.Count -1 );
+            }
+            foreach (DataRow dr in dtSorted.Rows)
+            {
+                helper.SetCells(row,1 , (row - 2).ToString());
+                helper.SetCells(row, 2, dr["F_pos1"].ToString());
+                helper.SetCells(row, 3, dr["F_realName"].ToString());
+                helper.SetCells(row, 4, dr["F_sexual"].ToString());
+                helper.SetCells(row, 5, dr["F_nationality"].ToString());
+                helper.SetCells(row, 6, dr["F_nativeplace"].ToString());
+                helper.SetCells(row, 7, dr["F_party"].ToString());
+                helper.SetCells(row, 8, dr["F_birthday"].ToString());
+                helper.SetCells(row, 9, dr["F_position"].ToString());
+                helper.SetCells(row, 10, dr["F_posBeginDate"].ToString());
+                helper.SetCells(row, 11, dr["F_adminRkBeginDate"].ToString());
+                helper.SetCells(row, 12, dr["F_title"].ToString());
+                helper.SetCells(row, 13, dr["F_highestEducation"].ToString());
+                helper.SetCells(row, 14, dr["F_highestDegree"].ToString());
+                helper.SetCells(row, 15, dr["F_highestGrduateSch"].ToString());
+                helper.SetCells(row, 16, dr["F_pos1"].ToString());
+                helper.SetCells(row, 17, dr["F_pos2"].ToString());
+                helper.SetCells(row, 18, dr["F_pos3"].ToString());    
+                row++;
+            }
+           
+            helper.SaveAsFile(fileName);
+            
+        }
+
+        private void FillExcel(String fileName, ViewPosApl userInfo)
+        {            
+            String templeteFile = Server.MapPath("/resource/applicationForm.xls");
+            ExcelHelper helper = new ExcelHelper(templeteFile, fileName);
+            helper.SetCells(2, 2, userInfo.F_realName);
+            helper.SetCells(2, 7, userInfo.F_workDept + " " + userInfo.F_position );
+            helper.SetCells(3, 2, userInfo.F_party);
+
+            helper.SetCells(3, 6, userInfo.F_title);
+            helper.SetCells(3, 10, userInfo.F_highestEducation);
+           
+            helper.SetCells(4, 2, userInfo.F_highestDegree);
+            helper.SetCells(4, 6, userInfo.F_adminRkBeginDate.Value.ToShortDateString());
+            helper.SetCells(5, 2, "岗位1:" + userInfo.F_pos1);
+            helper.SetCells(6, 2, "岗位2:" + userInfo.F_pos2);
+            helper.SetCells(7, 2, "岗位3:" + userInfo.F_pos3);
+            helper.SetCells(8, 2, userInfo.F_resume);
+            helper.SetCells(9, 2, userInfo.F_rwdandpunishmt);
+            helper.SetCells(10, 2, userInfo.F_reason);
+
+            helper.SaveAsFile(fileName);
+            /*
+            helper.CreateNewWordDocument(file);
+            DataClassesDataContext dc = new DataClassesDataContext();
+            String F_ID = Session[SessionMgm.SciProjectID].ToString();
+            ScienceProject project = dc.ScienceProject.SingleOrDefault(sp => sp.F_ID.Equals(F_ID));
+            if (project != null)
+            {
+                fillContent(helper, project);
+            }
+            project.F_name = UtilHelper.getValidatePath(project.F_name);
+            String fileName = Server.MapPath("/resource/" + project.F_name + ".doc");
+            bool result = helper.SaveAs(fileName);
+            helper.Close();
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.ContentType = "Application/msword";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + Server.UrlEncode(project.F_name) + ".doc");
+            Response.TransmitFile(fileName);
+            Response.Flush();
+            Response.Close();
+            Response.End();
+             */
+        }
+
         #region TODO:报表生成，待实现
         /// <summary>
         /// 需要根据模板修改
@@ -163,199 +337,45 @@ namespace EducationV2
         /// <param name="e"></param>
         protected void Label1_Click(object sender, EventArgs e)
         {
-            //WordHelper helper = new WordHelper();
-            //String file = Server.MapPath("/resource/sciProject.dot");
-            //helper.CreateNewWordDocument(file);
-            //DataClassesDataContext dc = new DataClassesDataContext();
-            //String F_ID = (sender as LinkButton).CommandArgument;
-            //ViewPosApl project = dc.ViewPosApl.SingleOrDefault(sp => sp.F_ID.Equals(F_ID));
-            //fillContent(helper, project);
-            //fillParticipants(helper, project);
-            //fillAudit(helper, project);
-            //project.F_name = UtilHelper.getValidatePath(project.F_name);
-            //String fileName = Server.MapPath("/resource/" + project.F_name + ".doc");
-            //bool result = helper.SaveAs(fileName);
-            //helper.Close();
-            //Response.Clear();
-            //Response.ContentType = "Application/msword";
-            //Response.AddHeader("content-disposition", "attachment;filename=" + HttpUtility.HtmlEncode(Path.GetFileName(fileName)));
-            //Response.TransmitFile(fileName);
-            //Response.End();
+
+            String F_ID = (sender as LinkButton).CommandArgument;
+            String fileName = Server.MapPath("/resource/" + F_ID + ".xls");
+            DataClassesDataContext dc = new DataClassesDataContext();
+            ViewPosApl userInfo = dc.ViewPosApl.SingleOrDefault(_uid => _uid.F_ID.Equals(F_ID));
+            FillExcel(fileName, userInfo);
+            FileInfo fileInfo = new FileInfo(fileName);
+            Response.Clear();
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
+            Response.AddHeader("Content-Length", fileInfo.Length.ToString());
+            Response.ContentType = "application/ms-excel";
+            Response.ContentEncoding = System.Text.Encoding.GetEncoding("gb2312");
+            Response.WriteFile(fileInfo.FullName);
+            Response.Flush();
+            File.Delete(fileName);//删除已下载文件
+            Response.End();
         }
 
-        /// <summary>
-        /// 需要根据模板修改
-        /// </summary>
-        /// <param name="helper"></param>
-        /// <param name="project"></param>
-        private void fillAudit(WordHelper helper, ViewPosApl project)
-        {
-            //DataClassesDataContext dc = new DataClassesDataContext();
-            //var deptAudit = dc.AuditOpinion.SingleOrDefault(ao => ao.F_projectID.Equals(project.F_ID) && ao.F_type.Equals(RoleType.DeptAdmin));
-            //if (deptAudit != null)
-            //{
-            //    helper.Replace("F_deptComment", deptAudit.F_content);
-            //    if (deptAudit.F_date != null)
-            //        helper.Replace("F_deptDate", deptAudit.F_date.Value.ToLongDateString());
-            //}
-            //var teamAudit = dc.AuditOpinion.SingleOrDefault(ao => ao.F_projectID.Equals(project.F_ID) && ao.F_type.Equals(RoleType.TeamAdmin));
-            //if (teamAudit != null)
-            //{
-            //    helper.Replace("F_teamComment", teamAudit.F_content);
-            //    if (teamAudit.F_date != null)
-            //        helper.Replace("F_teamDate", teamAudit.F_date.Value.ToLongDateString());
-            //}
-
-            //var schoAudit = dc.AuditOpinion.SingleOrDefault(ao => ao.F_projectID.Equals(project.F_ID) && ao.F_type.Equals(RoleType.SchoolAdmin));
-            //if (schoAudit != null)
-            //{
-            //    helper.Replace("F_scholComment", schoAudit.F_content);
-            //    if (schoAudit.F_date != null)
-            //        helper.Replace("F_scholDate", schoAudit.F_date.Value.ToLongDateString());
-            //}
-
-            //var eduAudit = dc.AuditOpinion.SingleOrDefault(ao => ao.F_projectID.Equals(project.F_ID) && ao.F_type.Equals(RoleType.EduAdmin));
-            //if (eduAudit != null)
-            //{
-            //    helper.Replace("F_eduComment", eduAudit.F_content);
-            //    if (eduAudit.F_date != null)
-            //        helper.Replace("F_eduDate", eduAudit.F_date.Value.ToLongDateString());
-            //}
-        }
-
-        /// <summary>
-        /// 需要根据模板修改
-        /// </summary>
-        /// <param name="helper"></param>
-        /// <param name="project"></param>
-        private void fillParticipants(WordHelper helper, ViewPosApl project)
-        {
-            //DataClassesDataContext dc = new DataClassesDataContext();
-            //var participants = dc.ApplicantMember.Where(am => am.F_applicantID.Equals(project.F_ID)).OrderBy(am => am.F_seq);
-            //if (helper.FindTable("F_participants"))
-            //{
-
-            //    foreach (ApplicantMember member in participants)
-            //    {
-            //        helper.MoveNextRow();
-            //        User user = dc.User.SingleOrDefault(us => us.F_ID.Equals(member.F_userID));
-            //        helper.SetCellValue(member.F_realName);
-            //        helper.MoveNextCell();
-            //        helper.SetCellValue(member.F_title);
-            //        helper.MoveNextCell();
-            //        helper.SetCellValue(member.F_expert);
-            //        helper.MoveNextCell();
-            //        helper.SetCellValue(member.F_duty);
-            //        helper.MoveNextCell();
-            //        helper.SetCellValue(member.F_workspace);
-            //        helper.MoveNextCell();
-            //        helper.SetCellValue("");
-
-            //    }
-
-            //}
-        }
-
-        /// <summary>
-        /// 需要根据模板修改
-        /// </summary>
-        /// <param name="helper"></param>
-        /// <param name="project"></param>
-        private void fillContent(WordHelper helper, ViewPosApl project)
-        {
-            //Type sciType = project.GetType();
-            //System.Reflection.PropertyInfo[] properties = sciType.GetProperties();
-            //String[] manualTypes = new String[] { "F_beginDate", "F_finishDate", "F_applicantDate" };
-            //foreach (System.Reflection.PropertyInfo property in properties)
-            //{
-            //    if (property.GetValue(project, null) != null)
-            //    {
-            //        String value = property.GetValue(project, null).ToString();
-            //        String name = property.Name;
-            //        if (!manualTypes.Contains(name))
-            //            helper.Replace(name, value);
-            //    }
-            //}
-            //String F_type = "重点（  ）产学研（  ）一般（  ）；B类（  ）";
-            //switch (project.F_type)
-            //{
-            //    case "重点": F_type = "重点（ √ ）产学研（  ）一般（  ）；B类（  ）"; break;
-            //    case "产学研": F_type = "重点（  ）产学研（ √ ）一般（  ）；B类（  ）"; break;
-            //    case "一般": F_type = "重点（  ）产学研（  ）一般（ √ ）；B类（  ）"; break;
-            //    case "B类": F_type = "重点（  ）产学研（  ）一般（  ）；B类（ √ ）"; break;
-            //}
-            //if (project.F_beginDate != null)
-            //    helper.Replace("F_beginDate", project.F_beginDate.Value.ToShortDateString());
-            //if (project.F_finishDate != null)
-            //    helper.Replace("F_finishDate", project.F_finishDate.Value.ToShortDateString());
-            //if (project.F_applicantDate != null)
-            //    helper.Replace("F_applicantDate", project.F_applicantDate.Value.ToShortDateString());
-            //helper.Replace("F_type1", F_type);
-            //helper.Replace("F_name1", project.F_name);
-            //helper.Replace("F_belongeddomain1", project.F_belongeddomain);
-            //helper.Replace("F_belongeddomain2", project.F_belongDomain2);
-            //helper.Replace("F_belongedSubject1", project.F_belongedSubject);
-            //helper.Replace("F_belongedSubject2", project.F_belongSubject2);
-            //helper.Replace("F_leader1", project.F_leader);
-            //helper.Replace("F_totalFund2", project.F_totalFund.ToString());
-            //if (project.F_cooperator1Comment != null)
-            //    helper.Replace("F_cooperator1Comment", project.F_cooperator1Comment);
-            //if (project.F_cooperator1Date != null)
-            //    helper.Replace("F_cooperator1Date", project.F_cooperator1Date.Value.ToShortDateString());
-
-        }
-
-        protected void btnGenNotice_Click(object sender, EventArgs e)
-        {
-            //DataClassesDataContext dc = new DataClassesDataContext();
-            //List<String> ids = GetSelectedIDs();
-            //String F_ID = Session[SessionMgm.UserID].ToString();
-            //String passComment = dc.User.SingleOrDefault(_user => _user.F_ID.Equals(F_ID)).F_passComment;
-            //var records = dc.ScienceProject.Where(_sci => ids.Contains(_sci.F_ID));
-            //foreach (ScienceProject project in records)
-            //{
-            //    project.F_status = ProjectStatus.Pass;
-            //    RemoveHistoricalOpinion(project.F_ID , RoleType.EduAdmin);
-            //    AuditOpinion opinion = new AuditOpinion();
-            //    opinion.F_projectID = project.F_ID;
-            //    opinion.F_ID = Guid.NewGuid().ToString();
-            //    opinion.F_content = passComment;
-            //    opinion.F_date = DateTime.Now;
-            //    opinion.F_type = RoleType.EduAdmin;
-            //    opinion.F_result = "审核通过";
-            //    dc.AuditOpinion.InsertOnSubmit(opinion);
-
-            //}
-            //dc.SubmitChanges();
-            //GridView1.PageIndex = 0;
-            //Response.Redirect("frmSciProjectList.aspx");
-
-        }
+  
 
         protected void btnGenList_Click(object sender, EventArgs e)
         {
-            //DataClassesDataContext dc = new DataClassesDataContext();
-            //List<String> ids = GetSelectedIDs();
-            //String F_ID = Session[SessionMgm.UserID].ToString();
-            //String denyComment = dc.User.SingleOrDefault(_user => _user.F_ID.Equals(F_ID)).F_denyComment;
-            //var records = dc.ScienceProject.Where(_sci => ids.Contains(_sci.F_ID));
-            //foreach (ScienceProject project in records)
-            //{
-            //    project.F_status = ProjectStatus.Deny;
-            //    RemoveHistoricalOpinion(project.F_ID, RoleType.EduAdmin);
-            //    AuditOpinion opinion = new AuditOpinion();
-            //    opinion.F_projectID = project.F_ID;
-            //    opinion.F_ID = Guid.NewGuid().ToString();
-            //    opinion.F_content = denyComment;
-            //    opinion.F_date = DateTime.Now;
-            //    opinion.F_type = RoleType.EduAdmin;
-            //    opinion.F_result = "审核不通过";
-            //    dc.AuditOpinion.InsertOnSubmit(opinion);
-
-            //}
-            //dc.SubmitChanges();
-            //GridView1.PageIndex = 0;
-            //Response.Redirect("frmSciProjectList.aspx");
+            String F_ID = "xxx";
+            String fileName = Server.MapPath("/resource/" + F_ID + ".xls");
+            FillDetail(fileName);
+            FileInfo fileInfo = new FileInfo(fileName);
+            Response.Clear();
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
+            Response.AddHeader("Content-Length", fileInfo.Length.ToString());
+            Response.ContentType = "application/ms-excel";
+            Response.ContentEncoding = System.Text.Encoding.GetEncoding("gb2312");
+            Response.WriteFile(fileInfo.FullName);
+            Response.Flush();
+            File.Delete(fileName);//删除已下载文件
+            Response.End();
         }
         #endregion
 
@@ -443,6 +463,28 @@ namespace EducationV2
                 //dc.SubmitChanges();
                 //Response.Redirect("frmSciProjectList.aspx");
             }
+        }
+
+
+
+        protected void btnGenSummary_Click(object sender, EventArgs e)
+        {
+            String F_ID = "yyy";
+            String fileName = Server.MapPath("/resource/" + F_ID + ".xls");
+            FillSummary(fileName);
+            FileInfo fileInfo = new FileInfo(fileName);
+            Response.Clear();
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
+            Response.AddHeader("Content-Length", fileInfo.Length.ToString());
+            Response.ContentType = "application/ms-excel";
+            Response.ContentEncoding = System.Text.Encoding.GetEncoding("gb2312");
+            Response.WriteFile(fileInfo.FullName);
+            Response.Flush();
+            File.Delete(fileName);//删除已下载文件
+            Response.End();
+
         }  
     }
 }

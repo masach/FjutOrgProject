@@ -229,34 +229,7 @@ namespace EducationV2
         #endregion
 
         #region Load Methods -- no use presently
-        private string GetAward()
-        {
-            context.Response.ContentType = "application/json";
-            DataClassesDataContext dc = new DataClassesDataContext();
-            String F_ID = context.Session[SessionMgm.VisitUserID].ToString();
-            var awards = dc.Award.Where(pp => pp.F_userID.Equals(F_ID));
-            List<Award> pps = new List<Award>();
-            foreach (var award in awards)
-            {
-                pps.Add(award);
-            }
-            return UtilHelper.GetJSON(pps);
-        }
-
-        private string GetPaper()
-        {
-            context.Response.ContentType = "application/json";
-            DataClassesDataContext dc = new DataClassesDataContext();
-            String F_ID = context.Session[SessionMgm.VisitUserID].ToString();
-            var papers = dc.PublishedPaper.Where(pp => pp.F_USERID.Equals(F_ID));
-            List<PublishedPaper> pps = new List<PublishedPaper>();
-            foreach (var paper in papers)
-            {
-                pps.Add(paper);
-            }
-            return UtilHelper.GetJSON(pps);
-        }
-
+    
         private string GetPatent()
         {
             context.Response.ContentType = "application/json";
@@ -271,60 +244,8 @@ namespace EducationV2
             return UtilHelper.GetJSON(pts);
         }
 
-        private string GetWorkExperience()
-        {
-            context.Response.ContentType = "application/json";
-            DataClassesDataContext dc = new DataClassesDataContext();
-            String F_ID = context.Session[SessionMgm.VisitUserID].ToString();
-            var workexperiences = dc.WorkExperience.Where(we => we.F_userID.Equals(F_ID));
-            List<WorkExperience> wes = new List<WorkExperience>();
-            foreach (var workexperience in workexperiences)
-            {
-                wes.Add(workexperience);
-            }
-            return UtilHelper.GetJSON(wes);
-        }
-
-        private string GetCertInfo()
-        {
-            context.Response.ContentType = "application/json";
-            DataClassesDataContext dc = new DataClassesDataContext();
-            String F_ID = paras["F_id"];
-            var certifications = dc.Certificate.Where(cert => cert.F_userID.Equals(F_ID));
-            List<Certificate> certs = new List<Certificate>();
-            foreach (var certification in certifications)
-            {
-                certs.Add(certification);
-            }
-            System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            DataContractJsonSerializer djson = new DataContractJsonSerializer(certs.GetType());
-            djson.WriteObject(ms, certs);
-            byte[] json = ms.ToArray();
-            ms.Close();
-            String result = Encoding.UTF8.GetString(json, 0, json.Length);
-            return result;
-        }
-
-        private string GetEducationInfo()
-        {
-            context.Response.ContentType = "application/json";
-            DataClassesDataContext dc = new DataClassesDataContext();
-            String F_ID = context.Session[SessionMgm.VisitUserID].ToString();
-            var educations = dc.EducationBackground.Where(edus => edus.F_userID.Equals(F_ID));
-            List<EducationBackground> eds = new List<EducationBackground>();
-            foreach (var education in educations)
-            {
-                eds.Add(education);
-            }
-            System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            DataContractJsonSerializer djson = new DataContractJsonSerializer(eds.GetType());
-            djson.WriteObject(ms, eds);
-            byte[] json = ms.ToArray();
-            ms.Close();
-            String result = Encoding.UTF8.GetString(json, 0, json.Length);
-            return result;
-        }
-        #endregion
+   
+ #endregion
 
         private string FindDutyUser()
         {

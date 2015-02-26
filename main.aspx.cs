@@ -61,7 +61,7 @@ namespace EducationV2
                 {
                     sb.Append("<li onclick=\"javascript:addTab('岗位信息管理','frmPositionManage.aspx');\">岗位信息管理</li>");
                 }
-                sb.Append("<li onclick=\"javascript:addTab('岗位申请管理','frmPosApplicantList.aspx');\">岗位申请列表</li>");
+                sb.Append("<li onclick=\"javascript:addTab('岗位申请列表','frmPosApplicantList.aspx');\">岗位申请列表</li>");
                 sb.Append("</ul></div>");
             }
 

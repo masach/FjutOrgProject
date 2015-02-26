@@ -24,9 +24,7 @@ namespace EducationV2
                 if (pos != null)
                 {
                     btnAdd.Visible = false;
-
                     txtName.Text = pos.F_posname;
-                   
                     if (pos.F_endDate != null)
                     {
                         txtEndDate.Text = pos.F_endDate.Value.ToShortDateString();         

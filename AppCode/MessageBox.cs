@@ -79,7 +79,7 @@ namespace EducationV2
         public static void MsgBox(System.Web.UI.Page page,string title,string Msg)
 		{
             page.ClientScript.RegisterStartupScript(page.GetType(), "message", @"messageBox('"+title+"','" + Msg + "',0);", true);
-            //ScriptManager.RegisterStartupScript(this, this.GetType(), "error", @"messageBox('保存成功 ','账单" + sBarcode + "作废成功！" + "',0);", true);
+
 		}
 
         

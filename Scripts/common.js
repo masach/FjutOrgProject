@@ -240,54 +240,7 @@ function add_row(tableid, rowid) {
 
 }
 
-//var rowCount = 1;
-//function add_row(tableid, rowid) {
-//    var table = document.getElementById(tableid);
-//    var row = document.getElementById(rowid);
-//    var cells = row.cells;
-//    if (tableid == "table_zykx" && table.rows.length > 2) {
-//        alert("比较熟悉的专业学科 最多允许填写两项");
-//        return;
-//    }
-//    rowCount = rowCount + 1;
-//    var newrow = table.insertRow(table.rows.length);
-//    var newrowid = "row_" + rowCount;
-//    newrow.id = newrowid;
-//    for (var i = 0; i < (cells.length); i++) {
-//        var cell = newrow.insertCell(i);
-//        var html = cells[i].innerHTML;
-//        if (html.indexOf("id") < 0)
-//            continue;
-//        //var oldID = html.match("name=\"[a-zA-Z0-9_]*\"")[0];
-//        //var newID = html.match("name=\"[a-zA-Z_]*")[0].substr(0) + (table.rows.length - 2) + "\"";
-//        //html = html.replace(oldID, newID);
-//        var oldID = html.match("id=\"[a-zA-Z0-9_]*\"")[0];
-//        var newID = html.match("id=\"[a-zA-Z_]*")[0].substr(0) + (table.rows.length - 2) + "\"";
-//        html = html.replace(oldID, newID);
 
-//        cell.innerHTML = html;
-//        cell.className = cells[i].className;
-//        var $datecontrol = $("#" + newID.substring(4, newID.length - 1));
-//        if ($datecontrol.attr("class") != null &&
-//            ($datecontrol.attr("class") == "datebox hasDatepicker" || $datecontrol.attr("class") == "datebox")) {
-//            $datecontrol.on('focus', function () {
-//                var $this = $(this);
-//                if (!$this.data('datepicker')) {
-//                    $this.removeClass("hasDatepicker");
-//                    $this.datepicker();
-//                    $this.datepicker("show");
-//                }
-//            });
-//        };
-//    }
-//    var lastcell = newrow.insertCell(cells.length);
-
-//    lastcell.innerHTML = "<a href='javascript:delete_row(\"" + tableid + "\",\"" + newrowid + "\")' >删除</a>";
-//    lastcell.className = cells[cells.length - 1].className;
-
-
-
-//}
 //删除行
 function delete_row(tableID, rowid) {
     if (window.confirm("是否确认删除？")) {

@@ -43,6 +43,7 @@
             岗位信息编辑</div>
         <div class="maintable">
             <table id="table1">
+             
                 <tr>
                     <td width="120">
                         岗位名称

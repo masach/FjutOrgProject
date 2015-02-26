@@ -96,19 +96,10 @@
          </td>
      </tr>
      <tr>
-     <td>
-     <a href="resource/申报用户操作手册.doc">申报人员操作手册</a>
-     <a href="resource/系统管理员操作手册.doc">系统管理员操作手册</a>
-     </td>
+     
      </tr>
 
-          <tr>
-     <td>
-     <a href="resource/系统管理员视频.zip">系统管理员演示视频</a>
-     <a href="resource/部门主管视频.zip">部门主管演示视频</a>
-     <a href="resource/申报人员视频.zip">申报人员演示视频</a>
-     </td>
-     </tr>
+          
      <tr>
 
      <td >

@@ -25,10 +25,12 @@ namespace EducationV2
             LoggerHelper.Log("岗位申请删除", "用户ID:" + instance.F_UserID + ",ID：" + instance.F_ID);
         }
 
+        /*
         partial void DeleteApplicantUnit(ApplicantUnit instance)
         {
             ExecuteDynamicDelete(instance);
             LoggerHelper.Log("单位删除", "项目名:" + instance.F_name + ",ID：" + instance.F_ID);               
         }
+         * */
     }
 }

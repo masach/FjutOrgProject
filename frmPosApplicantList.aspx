@@ -21,12 +21,11 @@
                     <input type="button" id="btnAdd" value="新 增" class="btn" onclick="btnAdd_onclick()" />&nbsp;
                     <asp:Button ID="btnDel" runat="server" Text="删 除" CssClass="btn" OnClientClick="return confirm('您确认删除该记录吗?');"
                         OnClick="btnDel_Click" />
-                    &nbsp;<asp:Button ID="btnFilter" runat="server" CssClass="btn80" Text="仅显示有效记录"
+                    &nbsp;<%--<asp:Button ID="btnFilter" runat="server" CssClass="btn80" Text="仅显示有效记录"
                         OnClick="btnFilter_Click" />
                     &nbsp;
                     <asp:Button ID="btnAllRecord" runat="server" OnClick="btnAllRecord_Click" Text="显示所有记录"
-                        CssClass="btn80" />
-                    &nbsp;
+                        CssClass="btn80" />--%>&nbsp;
                     <asp:DropDownList ID="ddlField" runat="server">
                         <asp:ListItem Value="F_realName">姓名</asp:ListItem>
                         <asp:ListItem Value="F_workDept">部门</asp:ListItem>
@@ -43,12 +42,11 @@
                     </asp:DropDownList>
                     &nbsp;<asp:TextBox ID="txtKeyword" runat="server"></asp:TextBox>&nbsp;<asp:Button
                         ID="btnSearch" runat="server" Text="检 索" OnClick="btnSearch_Click" CssClass="btn" />
-                    &nbsp;<asp:Button ID="btnGenNotice" runat="server" Text="生成公告" Visible="false" CssClass="btn70"
-                        OnClick="btnGenNotice_Click" />
-                    &nbsp;<asp:Button ID="btnGenList" runat="server" Text="生成汇总表1" Visible="false" CssClass="btn70"
+                   
+                    &nbsp;<asp:Button ID="btnGenList" runat="server" Text="生成详细汇总表" Visible="false" CssClass="btn80"
                         OnClick="btnGenList_Click" />         
-                    &nbsp;<asp:Button ID="btnGenCmprList" runat="server" Text="生成汇总表2（比较）" Visible="false" CssClass="btn80"
-                        OnClick="btnGenList_Click" />                    
+                    &nbsp;<asp:Button ID="btnGenCmprList" runat="server" Text="生成简要汇总表" Visible="false" CssClass="btn80"
+                        OnClick="btnGenSummary_Click" />                    
                 </div>
                 <div class="maintable">
                     <yyc:SmartGridView Width="100%" ID="GridView1" runat="server" AllowPaging="True"
@@ -112,7 +110,7 @@
                             </asp:BoundField>
                             <asp:TemplateField HeaderText="操作">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="exportWord" runat="server" Text="导出Word" OnClick="Label1_Click"
+                                    <asp:LinkButton ID="exportWord" runat="server" Text="导出Excel" OnClick="Label1_Click"
                                         CommandArgument='<%# Eval("F_ID") %>'>
                                     </asp:LinkButton>
                                 </ItemTemplate>
@@ -131,11 +129,12 @@
                 </div>
             </ContentTemplate>
             <Triggers>
-                <asp:AsyncPostBackTrigger ControlID="btnAllRecord" />
-                <asp:AsyncPostBackTrigger ControlID="btnFilter" />
+            
                 <asp:AsyncPostBackTrigger ControlID="btnSearch" />
                 <asp:AsyncPostBackTrigger ControlID="btnDel" />
                 <asp:PostBackTrigger ControlID="GridView1" />
+                <asp:PostBackTrigger ControlID="btnGenList" />
+                <asp:PostBackTrigger ControlID="btnGenCmprList" />
             </Triggers>
         </asp:UpdatePanel>
     </div>
