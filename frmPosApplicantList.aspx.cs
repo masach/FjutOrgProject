@@ -429,27 +429,27 @@ namespace EducationV2
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                bool visible = true;
-                DataRowView row = e.Row.DataItem as DataRowView;
-                switch (Session[SessionMgm.Role].ToString())
-                {
-                    case "申报人员（专家）": visible = row["F_status"].Equals(ProjectStatus.UnderDeptAudit); break;
-                    case "部门主管": visible = row["F_status"].Equals(ProjectStatus.UnderSchoolAudit); break;
-                    case "单位主管": visible = row["F_status"].Equals(ProjectStatus.UnderEducationAudit); break;
-                }
-                if (visible == false)
-                    ((LinkButton)e.Row.Cells[e.Row.Cells.Count-1].Controls[1]).Text = "";
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+            //    bool visible = true;
+            //    DataRowView row = e.Row.DataItem as DataRowView;
+            //    switch (Session[SessionMgm.Role].ToString())
+            //    {
+            //        case "申报人员（专家）": visible = row["F_status"].Equals(ProjectStatus.UnderDeptAudit); break;
+            //        case "部门主管": visible = row["F_status"].Equals(ProjectStatus.UnderSchoolAudit); break;
+            //        case "单位主管": visible = row["F_status"].Equals(ProjectStatus.UnderEducationAudit); break;
+            //    }
+            //    if (visible == false)
+            //        ((LinkButton)e.Row.Cells[e.Row.Cells.Count-1].Controls[1]).Text = "";
 
 
-            }
+            //}
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "ret")
-            {
+            //if (e.CommandName == "ret")
+            //{
                 //String role = Session[SessionMgm.Role].ToString();
                 //String id = e.CommandArgument.ToString();
                 //DataClassesDataContext dc = new DataClassesDataContext();
@@ -462,7 +462,7 @@ namespace EducationV2
                 //    project.F_status = ProjectStatus.Draft;
                 //dc.SubmitChanges();
                 //Response.Redirect("frmSciProjectList.aspx");
-            }
+            //}
         }
 
 

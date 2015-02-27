@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FjutOrgDept" Class="DataClassesDataContext" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=PC201309101713\WJS;Initial Catalog=FjutOrgDept;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="FjutOrgDeptConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=10.10.123.5;Initial Catalog=FjutOrgDept;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="FjutOrgDeptConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.ViewPosApl" Member="ViewPosApl">
     <Type Name="ViewPosApl">
       <Column Name="F_ID" Type="System.String" DbType="NChar(36) NOT NULL" CanBeNull="false" />
@@ -140,20 +140,6 @@
       <Column Name="F_type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Patent" Member="Patent">
-    <Type Name="Patent">
-      <Column Name="F_ID" Type="System.String" DbType="Char(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="F_name" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="F_code" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-      <Column Name="F_type" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="F_declareDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="F_userID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
-      <Column Name="F_appliedDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="F_status" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="F_projectID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
-      <Column Name="F_applyCode" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.PosApplicant" Member="PosApplicant">
     <Type Name="PosApplicant">
       <Column Name="F_ID" Type="System.String" DbType="NChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -264,7 +250,6 @@
       <Column Name="F_endDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="F_status" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="F_comment" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="F_code" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

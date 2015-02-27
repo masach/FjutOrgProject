@@ -230,22 +230,8 @@ namespace EducationV2
 
         #region Load Methods -- no use presently
     
-        private string GetPatent()
-        {
-            context.Response.ContentType = "application/json";
-            DataClassesDataContext dc = new DataClassesDataContext();
-            String F_ID = context.Session[SessionMgm.VisitUserID].ToString();
-            var patents = dc.Patent.Where(pt => pt.F_userID.Equals(F_ID));
-            List<Patent> pts = new List<Patent>();
-            foreach (var patent in patents)
-            {
-                pts.Add(patent);
-            }
-            return UtilHelper.GetJSON(pts);
-        }
-
-   
- #endregion
+  
+        #endregion
 
         private string FindDutyUser()
         {

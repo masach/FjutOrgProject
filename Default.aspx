@@ -20,14 +20,13 @@
 </head>
      <body >
          <form id="form1" runat="server" clientidmode="Static">
-     <center>
+         <center>
      <table style="width:1000px; text-align:center">
      <tr>
-     <td align="left">
-      <img src="images/logo.jpg" alt="logo"
+     <td align="center">
+      <img src="images/logoex.jpg" alt="logo"
                         style="margin: 0px; padding: 0px; border-width: 0px;" />
-      <img src="images/logo2.jpg" alt="log"
-                        style="margin: 0px; padding: 0px; border-width: 0px;" />
+
      </td>
      </tr>
      <tr>
@@ -95,10 +94,7 @@
             </div>
          </td>
      </tr>
-     <tr>
-     
-     </tr>
-
+ 
           
      <tr>
 
@@ -112,8 +108,8 @@
 
 
      </table>
-
      </center>
+   
          </form>
       </body>          
 </html>

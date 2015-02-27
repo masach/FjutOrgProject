@@ -75,7 +75,7 @@
             </table>
             </form>
             <asp:LinqDataSource ID="PosDataSource" runat="server" ContextTypeName="EducationV2.DataClassesDataContext"
-                EnableDelete="false" EntityTypeName="" TableName="Position" Where='F_status="审核通过"'
+                EnableDelete="false" EntityTypeName="" TableName="Position" Where='F_status="审核通过" && F_endDate >= DateTime.Now.Date'
                 OrderBy="F_endDate">
             </asp:LinqDataSource>
         </div>
