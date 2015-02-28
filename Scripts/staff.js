@@ -62,7 +62,7 @@ function initialPage(pageNum) {
 
 function fillBaseInfo(succ) {
     $("#F_userName").val(succ.F_userName);
-    $("#F_UserID").val(succ.F_UserID);
+    $("#F_UserID").text(succ.F_UserID);
     $("#F_lastModifyTime").text(ChangeDateFormat(succ.F_lastModifyTime));    
     $("#F_StaffID").val(succ.StaffID);
 
@@ -80,9 +80,10 @@ function fillBaseInfo(succ) {
     $("#F_highestEducation").val(succ.F_highestEducation);
     $("#F_highestGrduateSch").val(succ.F_highestGrduateSch);
     $("#F_workBeginDate").val(ChangeDateFormat(succ.F_workBeginDate));
+      
+    //$("#F_workDept").val(succ.F_workDept);
+    $("#F_workDept").val(succ.F_belongDeptID);
 
-    $("#F_workDept").val(succ.F_workDept);
-    //$("#F_workDept").val(succ.F_belongDeptID);
     $("#F_position").val(succ.F_position);
     $("#F_title").val(succ.F_title);
 
@@ -101,6 +102,7 @@ function fillBaseInfo(succ) {
     $("#F_freeAddress").val(succ.F_freeAddress);
     $("#F_fax").val(succ.F_fax);
 
+    $("#F_empno").val(succ.F_empno);    
     $("#F_status").val(succ.F_status);
 }
 
@@ -154,6 +156,18 @@ function savePage(page) {
     if (applicantid != 0) {
         serRst = serRst + '&stfID=' + applicantid;
     }
+
+    // 界面中F_UserID未使用input，无法序列化，故>>
+    var fusrid = $("#F_UserID").text();    
+    fusrid = trim(fusrid);//把空格干掉
+    if (fusrid != "" && fusrid != undefined) {        
+        serRst = serRst + '&F_UserID=' + fusrid;
+    }
+
+    var wkdpt = $("#F_workDept").find("option:selected").text();
+    if (wkdpt != "" && wkdpt != undefined) {
+        serRst = serRst + '&F_workDeptText=' + wkdpt;
+    }    
 
     $.ajax({
         type: 'POST',

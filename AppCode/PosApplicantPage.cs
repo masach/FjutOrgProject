@@ -56,7 +56,7 @@ namespace EducationV2.AppCode
                 }
                 if (showSave)
                 {
-                    litContent = "<input id='btnSave' type='button' value='保 存' onclick='savePage(" + pageIndex + ")' class='btn' /> ";
+                    litContent = "<input id='btnSave' type='button' value='保存草稿' onclick='savePage(" + pageIndex + ")' class='btn' /> ";
                 }
                 if (showCommit)
                     litContent += "  <input id='btnSubmit' type='button' value='提 交' onclick='commit(" + pageIndex + ")' class='btn' />";

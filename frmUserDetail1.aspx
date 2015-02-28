@@ -154,9 +154,11 @@
                         现工作部门
                     </td>
                     <td>
+                    <%-- 
                         <input id="F_belongDeptID" name="F_belongDeptID" type="hidden" />
+                        --%>
                         <asp:DropDownList ID="F_workDept" name="F_workDept" runat="server" DataSourceID="DeptDataSource"
-                            DataTextField="F_name" DataValueField="F_name" ClientIDMode="Static" CssClass="t_tabletxt"
+                            DataTextField="F_name" DataValueField="F_ID" ClientIDMode="Static" CssClass="t_tabletxt validate[required]"
                             Style="width: 85%">
                         </asp:DropDownList>
                     </td>

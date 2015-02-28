@@ -49,9 +49,6 @@ namespace EducationV2
     partial void InsertSchedule(Schedule instance);
     partial void UpdateSchedule(Schedule instance);
     partial void DeleteSchedule(Schedule instance);
-    partial void InsertStaff(Staff instance);
-    partial void UpdateStaff(Staff instance);
-    partial void DeleteStaff(Staff instance);
     partial void InsertStaffFamilyMember(StaffFamilyMember instance);
     partial void UpdateStaffFamilyMember(StaffFamilyMember instance);
     partial void DeleteStaffFamilyMember(StaffFamilyMember instance);
@@ -61,10 +58,13 @@ namespace EducationV2
     partial void InsertPosition(Position instance);
     partial void UpdatePosition(Position instance);
     partial void DeletePosition(Position instance);
+    partial void InsertStaff(Staff instance);
+    partial void UpdateStaff(Staff instance);
+    partial void DeleteStaff(Staff instance);
     #endregion
 		
 		public DataClassesDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["FjutOrgDeptConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["FjutOrgDeptConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -165,14 +165,6 @@ namespace EducationV2
 			}
 		}
 		
-		public System.Data.Linq.Table<Staff> Staff
-		{
-			get
-			{
-				return this.GetTable<Staff>();
-			}
-		}
-		
 		public System.Data.Linq.Table<StaffFamilyMember> StaffFamilyMember
 		{
 			get
@@ -194,6 +186,14 @@ namespace EducationV2
 			get
 			{
 				return this.GetTable<Position>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Staff> Staff
+		{
+			get
+			{
+				return this.GetTable<Staff>();
 			}
 		}
 	}
@@ -3454,1057 +3454,6 @@ namespace EducationV2
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Staff")]
-	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class Staff : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _F_StaffID;
-		
-		private string _F_UserID;
-		
-		private string _F_userName;
-		
-		private string _F_pwd;
-		
-		private string _F_realName;
-		
-		private string _F_sexual;
-		
-		private string _F_idType;
-		
-		private string _F_idNumber;
-		
-		private string _F_workDept;
-		
-		private string _F_phone;
-		
-		private string _F_mobile;
-		
-		private string _F_highestDegree;
-		
-		private string _F_highestEducation;
-		
-		private string _F_nationality;
-		
-		private System.Nullable<System.DateTime> _F_birthday;
-		
-		private string _F_position;
-		
-		private string _F_title;
-		
-		private string _F_freeAddress;
-		
-		private string _F_phone2;
-		
-		private string _F_fax;
-		
-		private string _F_email;
-		
-		private string _F_mostFamiliarSubject;
-		
-		private string _F_familiarSubject1;
-		
-		private string _F_familiarSubject2;
-		
-		private string _F_Role;
-		
-		private string _F_status;
-		
-		private string _F_belongDeptID;
-		
-		private string _F_bornplace;
-		
-		private string _F_nativeplace;
-		
-		private string _F_party;
-		
-		private System.Nullable<System.DateTime> _F_partyEntryDate;
-		
-		private System.Nullable<System.DateTime> _F_workBeginDate;
-		
-		private string _F_highestGrduateSch;
-		
-		private System.Nullable<System.DateTime> _F_titleBeginDate;
-		
-		private string _F_resume;
-		
-		private string _F_rwdandpunishmt;
-		
-		private System.Nullable<System.DateTime> _F_lastModifyTime;
-		
-		private System.Nullable<System.DateTime> _F_posBeginDate;
-		
-		private string _F_adminRanking;
-		
-		private System.Nullable<System.DateTime> _F_adminRkBeginDate;
-		
-    #region 可扩展性方法定义
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnF_StaffIDChanging(string value);
-    partial void OnF_StaffIDChanged();
-    partial void OnF_UserIDChanging(string value);
-    partial void OnF_UserIDChanged();
-    partial void OnF_userNameChanging(string value);
-    partial void OnF_userNameChanged();
-    partial void OnF_pwdChanging(string value);
-    partial void OnF_pwdChanged();
-    partial void OnF_realNameChanging(string value);
-    partial void OnF_realNameChanged();
-    partial void OnF_sexualChanging(string value);
-    partial void OnF_sexualChanged();
-    partial void OnF_idTypeChanging(string value);
-    partial void OnF_idTypeChanged();
-    partial void OnF_idNumberChanging(string value);
-    partial void OnF_idNumberChanged();
-    partial void OnF_workDeptChanging(string value);
-    partial void OnF_workDeptChanged();
-    partial void OnF_phoneChanging(string value);
-    partial void OnF_phoneChanged();
-    partial void OnF_mobileChanging(string value);
-    partial void OnF_mobileChanged();
-    partial void OnF_highestDegreeChanging(string value);
-    partial void OnF_highestDegreeChanged();
-    partial void OnF_highestEducationChanging(string value);
-    partial void OnF_highestEducationChanged();
-    partial void OnF_nationalityChanging(string value);
-    partial void OnF_nationalityChanged();
-    partial void OnF_birthdayChanging(System.Nullable<System.DateTime> value);
-    partial void OnF_birthdayChanged();
-    partial void OnF_positionChanging(string value);
-    partial void OnF_positionChanged();
-    partial void OnF_titleChanging(string value);
-    partial void OnF_titleChanged();
-    partial void OnF_freeAddressChanging(string value);
-    partial void OnF_freeAddressChanged();
-    partial void OnF_phone2Changing(string value);
-    partial void OnF_phone2Changed();
-    partial void OnF_faxChanging(string value);
-    partial void OnF_faxChanged();
-    partial void OnF_emailChanging(string value);
-    partial void OnF_emailChanged();
-    partial void OnF_mostFamiliarSubjectChanging(string value);
-    partial void OnF_mostFamiliarSubjectChanged();
-    partial void OnF_familiarSubject1Changing(string value);
-    partial void OnF_familiarSubject1Changed();
-    partial void OnF_familiarSubject2Changing(string value);
-    partial void OnF_familiarSubject2Changed();
-    partial void OnF_RoleChanging(string value);
-    partial void OnF_RoleChanged();
-    partial void OnF_statusChanging(string value);
-    partial void OnF_statusChanged();
-    partial void OnF_belongDeptIDChanging(string value);
-    partial void OnF_belongDeptIDChanged();
-    partial void OnF_bornplaceChanging(string value);
-    partial void OnF_bornplaceChanged();
-    partial void OnF_nativeplaceChanging(string value);
-    partial void OnF_nativeplaceChanged();
-    partial void OnF_partyChanging(string value);
-    partial void OnF_partyChanged();
-    partial void OnF_partyEntryDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnF_partyEntryDateChanged();
-    partial void OnF_workBeginDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnF_workBeginDateChanged();
-    partial void OnF_highestGrduateSchChanging(string value);
-    partial void OnF_highestGrduateSchChanged();
-    partial void OnF_titleBeginDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnF_titleBeginDateChanged();
-    partial void OnF_resumeChanging(string value);
-    partial void OnF_resumeChanged();
-    partial void OnF_rwdandpunishmtChanging(string value);
-    partial void OnF_rwdandpunishmtChanged();
-    partial void OnF_lastModifyTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnF_lastModifyTimeChanged();
-    partial void OnF_posBeginDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnF_posBeginDateChanged();
-    partial void OnF_adminRankingChanging(string value);
-    partial void OnF_adminRankingChanged();
-    partial void OnF_adminRkBeginDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnF_adminRkBeginDateChanged();
-    #endregion
-		
-		public Staff()
-		{
-			this.Initialize();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_StaffID", DbType="NChar(36) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
-		public string F_StaffID
-		{
-			get
-			{
-				return this._F_StaffID;
-			}
-			set
-			{
-				if ((this._F_StaffID != value))
-				{
-					this.OnF_StaffIDChanging(value);
-					this.SendPropertyChanging();
-					this._F_StaffID = value;
-					this.SendPropertyChanged("F_StaffID");
-					this.OnF_StaffIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_UserID", DbType="NChar(36)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
-		public string F_UserID
-		{
-			get
-			{
-				return this._F_UserID;
-			}
-			set
-			{
-				if ((this._F_UserID != value))
-				{
-					this.OnF_UserIDChanging(value);
-					this.SendPropertyChanging();
-					this._F_UserID = value;
-					this.SendPropertyChanged("F_UserID");
-					this.OnF_UserIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_userName", DbType="VarChar(32)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
-		public string F_userName
-		{
-			get
-			{
-				return this._F_userName;
-			}
-			set
-			{
-				if ((this._F_userName != value))
-				{
-					this.OnF_userNameChanging(value);
-					this.SendPropertyChanging();
-					this._F_userName = value;
-					this.SendPropertyChanged("F_userName");
-					this.OnF_userNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_pwd", DbType="VarChar(32)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
-		public string F_pwd
-		{
-			get
-			{
-				return this._F_pwd;
-			}
-			set
-			{
-				if ((this._F_pwd != value))
-				{
-					this.OnF_pwdChanging(value);
-					this.SendPropertyChanging();
-					this._F_pwd = value;
-					this.SendPropertyChanged("F_pwd");
-					this.OnF_pwdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_realName", DbType="NVarChar(20)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
-		public string F_realName
-		{
-			get
-			{
-				return this._F_realName;
-			}
-			set
-			{
-				if ((this._F_realName != value))
-				{
-					this.OnF_realNameChanging(value);
-					this.SendPropertyChanging();
-					this._F_realName = value;
-					this.SendPropertyChanged("F_realName");
-					this.OnF_realNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_sexual", DbType="Char(2)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6)]
-		public string F_sexual
-		{
-			get
-			{
-				return this._F_sexual;
-			}
-			set
-			{
-				if ((this._F_sexual != value))
-				{
-					this.OnF_sexualChanging(value);
-					this.SendPropertyChanging();
-					this._F_sexual = value;
-					this.SendPropertyChanged("F_sexual");
-					this.OnF_sexualChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_idType", DbType="VarChar(10)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=7)]
-		public string F_idType
-		{
-			get
-			{
-				return this._F_idType;
-			}
-			set
-			{
-				if ((this._F_idType != value))
-				{
-					this.OnF_idTypeChanging(value);
-					this.SendPropertyChanging();
-					this._F_idType = value;
-					this.SendPropertyChanged("F_idType");
-					this.OnF_idTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_idNumber", DbType="VarChar(20)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
-		public string F_idNumber
-		{
-			get
-			{
-				return this._F_idNumber;
-			}
-			set
-			{
-				if ((this._F_idNumber != value))
-				{
-					this.OnF_idNumberChanging(value);
-					this.SendPropertyChanging();
-					this._F_idNumber = value;
-					this.SendPropertyChanged("F_idNumber");
-					this.OnF_idNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_workDept", DbType="NVarChar(40)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9)]
-		public string F_workDept
-		{
-			get
-			{
-				return this._F_workDept;
-			}
-			set
-			{
-				if ((this._F_workDept != value))
-				{
-					this.OnF_workDeptChanging(value);
-					this.SendPropertyChanging();
-					this._F_workDept = value;
-					this.SendPropertyChanged("F_workDept");
-					this.OnF_workDeptChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_phone", DbType="VarChar(30)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10)]
-		public string F_phone
-		{
-			get
-			{
-				return this._F_phone;
-			}
-			set
-			{
-				if ((this._F_phone != value))
-				{
-					this.OnF_phoneChanging(value);
-					this.SendPropertyChanging();
-					this._F_phone = value;
-					this.SendPropertyChanged("F_phone");
-					this.OnF_phoneChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_mobile", DbType="VarChar(20)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=11)]
-		public string F_mobile
-		{
-			get
-			{
-				return this._F_mobile;
-			}
-			set
-			{
-				if ((this._F_mobile != value))
-				{
-					this.OnF_mobileChanging(value);
-					this.SendPropertyChanging();
-					this._F_mobile = value;
-					this.SendPropertyChanged("F_mobile");
-					this.OnF_mobileChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_highestDegree", DbType="VarChar(10)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=12)]
-		public string F_highestDegree
-		{
-			get
-			{
-				return this._F_highestDegree;
-			}
-			set
-			{
-				if ((this._F_highestDegree != value))
-				{
-					this.OnF_highestDegreeChanging(value);
-					this.SendPropertyChanging();
-					this._F_highestDegree = value;
-					this.SendPropertyChanged("F_highestDegree");
-					this.OnF_highestDegreeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_highestEducation", DbType="VarChar(10)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=13)]
-		public string F_highestEducation
-		{
-			get
-			{
-				return this._F_highestEducation;
-			}
-			set
-			{
-				if ((this._F_highestEducation != value))
-				{
-					this.OnF_highestEducationChanging(value);
-					this.SendPropertyChanging();
-					this._F_highestEducation = value;
-					this.SendPropertyChanged("F_highestEducation");
-					this.OnF_highestEducationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_nationality", DbType="VarChar(10)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=14)]
-		public string F_nationality
-		{
-			get
-			{
-				return this._F_nationality;
-			}
-			set
-			{
-				if ((this._F_nationality != value))
-				{
-					this.OnF_nationalityChanging(value);
-					this.SendPropertyChanging();
-					this._F_nationality = value;
-					this.SendPropertyChanged("F_nationality");
-					this.OnF_nationalityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_birthday", DbType="Date")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=15)]
-		public System.Nullable<System.DateTime> F_birthday
-		{
-			get
-			{
-				return this._F_birthday;
-			}
-			set
-			{
-				if ((this._F_birthday != value))
-				{
-					this.OnF_birthdayChanging(value);
-					this.SendPropertyChanging();
-					this._F_birthday = value;
-					this.SendPropertyChanged("F_birthday");
-					this.OnF_birthdayChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_position", DbType="NVarChar(50)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=16)]
-		public string F_position
-		{
-			get
-			{
-				return this._F_position;
-			}
-			set
-			{
-				if ((this._F_position != value))
-				{
-					this.OnF_positionChanging(value);
-					this.SendPropertyChanging();
-					this._F_position = value;
-					this.SendPropertyChanged("F_position");
-					this.OnF_positionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_title", DbType="NVarChar(50)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=17)]
-		public string F_title
-		{
-			get
-			{
-				return this._F_title;
-			}
-			set
-			{
-				if ((this._F_title != value))
-				{
-					this.OnF_titleChanging(value);
-					this.SendPropertyChanging();
-					this._F_title = value;
-					this.SendPropertyChanged("F_title");
-					this.OnF_titleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_freeAddress", DbType="NVarChar(50)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=18)]
-		public string F_freeAddress
-		{
-			get
-			{
-				return this._F_freeAddress;
-			}
-			set
-			{
-				if ((this._F_freeAddress != value))
-				{
-					this.OnF_freeAddressChanging(value);
-					this.SendPropertyChanging();
-					this._F_freeAddress = value;
-					this.SendPropertyChanged("F_freeAddress");
-					this.OnF_freeAddressChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_phone2", DbType="VarChar(20)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=19)]
-		public string F_phone2
-		{
-			get
-			{
-				return this._F_phone2;
-			}
-			set
-			{
-				if ((this._F_phone2 != value))
-				{
-					this.OnF_phone2Changing(value);
-					this.SendPropertyChanging();
-					this._F_phone2 = value;
-					this.SendPropertyChanged("F_phone2");
-					this.OnF_phone2Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_fax", DbType="VarChar(20)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=20)]
-		public string F_fax
-		{
-			get
-			{
-				return this._F_fax;
-			}
-			set
-			{
-				if ((this._F_fax != value))
-				{
-					this.OnF_faxChanging(value);
-					this.SendPropertyChanging();
-					this._F_fax = value;
-					this.SendPropertyChanged("F_fax");
-					this.OnF_faxChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_email", DbType="VarChar(30)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=21)]
-		public string F_email
-		{
-			get
-			{
-				return this._F_email;
-			}
-			set
-			{
-				if ((this._F_email != value))
-				{
-					this.OnF_emailChanging(value);
-					this.SendPropertyChanging();
-					this._F_email = value;
-					this.SendPropertyChanged("F_email");
-					this.OnF_emailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_mostFamiliarSubject", DbType="VarChar(50)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=22)]
-		public string F_mostFamiliarSubject
-		{
-			get
-			{
-				return this._F_mostFamiliarSubject;
-			}
-			set
-			{
-				if ((this._F_mostFamiliarSubject != value))
-				{
-					this.OnF_mostFamiliarSubjectChanging(value);
-					this.SendPropertyChanging();
-					this._F_mostFamiliarSubject = value;
-					this.SendPropertyChanged("F_mostFamiliarSubject");
-					this.OnF_mostFamiliarSubjectChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_familiarSubject1", DbType="VarChar(50)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=23)]
-		public string F_familiarSubject1
-		{
-			get
-			{
-				return this._F_familiarSubject1;
-			}
-			set
-			{
-				if ((this._F_familiarSubject1 != value))
-				{
-					this.OnF_familiarSubject1Changing(value);
-					this.SendPropertyChanging();
-					this._F_familiarSubject1 = value;
-					this.SendPropertyChanged("F_familiarSubject1");
-					this.OnF_familiarSubject1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_familiarSubject2", DbType="VarChar(50)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=24)]
-		public string F_familiarSubject2
-		{
-			get
-			{
-				return this._F_familiarSubject2;
-			}
-			set
-			{
-				if ((this._F_familiarSubject2 != value))
-				{
-					this.OnF_familiarSubject2Changing(value);
-					this.SendPropertyChanging();
-					this._F_familiarSubject2 = value;
-					this.SendPropertyChanged("F_familiarSubject2");
-					this.OnF_familiarSubject2Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_Role", DbType="VarChar(20)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=25)]
-		public string F_Role
-		{
-			get
-			{
-				return this._F_Role;
-			}
-			set
-			{
-				if ((this._F_Role != value))
-				{
-					this.OnF_RoleChanging(value);
-					this.SendPropertyChanging();
-					this._F_Role = value;
-					this.SendPropertyChanged("F_Role");
-					this.OnF_RoleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_status", DbType="VarChar(10)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=26)]
-		public string F_status
-		{
-			get
-			{
-				return this._F_status;
-			}
-			set
-			{
-				if ((this._F_status != value))
-				{
-					this.OnF_statusChanging(value);
-					this.SendPropertyChanging();
-					this._F_status = value;
-					this.SendPropertyChanged("F_status");
-					this.OnF_statusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_belongDeptID", DbType="NChar(36)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=27)]
-		public string F_belongDeptID
-		{
-			get
-			{
-				return this._F_belongDeptID;
-			}
-			set
-			{
-				if ((this._F_belongDeptID != value))
-				{
-					this.OnF_belongDeptIDChanging(value);
-					this.SendPropertyChanging();
-					this._F_belongDeptID = value;
-					this.SendPropertyChanged("F_belongDeptID");
-					this.OnF_belongDeptIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_bornplace", DbType="NVarChar(50)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=28)]
-		public string F_bornplace
-		{
-			get
-			{
-				return this._F_bornplace;
-			}
-			set
-			{
-				if ((this._F_bornplace != value))
-				{
-					this.OnF_bornplaceChanging(value);
-					this.SendPropertyChanging();
-					this._F_bornplace = value;
-					this.SendPropertyChanged("F_bornplace");
-					this.OnF_bornplaceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_nativeplace", DbType="NVarChar(30)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=29)]
-		public string F_nativeplace
-		{
-			get
-			{
-				return this._F_nativeplace;
-			}
-			set
-			{
-				if ((this._F_nativeplace != value))
-				{
-					this.OnF_nativeplaceChanging(value);
-					this.SendPropertyChanging();
-					this._F_nativeplace = value;
-					this.SendPropertyChanged("F_nativeplace");
-					this.OnF_nativeplaceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_party", DbType="NVarChar(20)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=30)]
-		public string F_party
-		{
-			get
-			{
-				return this._F_party;
-			}
-			set
-			{
-				if ((this._F_party != value))
-				{
-					this.OnF_partyChanging(value);
-					this.SendPropertyChanging();
-					this._F_party = value;
-					this.SendPropertyChanged("F_party");
-					this.OnF_partyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_partyEntryDate", DbType="Date")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=31)]
-		public System.Nullable<System.DateTime> F_partyEntryDate
-		{
-			get
-			{
-				return this._F_partyEntryDate;
-			}
-			set
-			{
-				if ((this._F_partyEntryDate != value))
-				{
-					this.OnF_partyEntryDateChanging(value);
-					this.SendPropertyChanging();
-					this._F_partyEntryDate = value;
-					this.SendPropertyChanged("F_partyEntryDate");
-					this.OnF_partyEntryDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_workBeginDate", DbType="Date")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=32)]
-		public System.Nullable<System.DateTime> F_workBeginDate
-		{
-			get
-			{
-				return this._F_workBeginDate;
-			}
-			set
-			{
-				if ((this._F_workBeginDate != value))
-				{
-					this.OnF_workBeginDateChanging(value);
-					this.SendPropertyChanging();
-					this._F_workBeginDate = value;
-					this.SendPropertyChanged("F_workBeginDate");
-					this.OnF_workBeginDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_highestGrduateSch", DbType="NChar(30)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=33)]
-		public string F_highestGrduateSch
-		{
-			get
-			{
-				return this._F_highestGrduateSch;
-			}
-			set
-			{
-				if ((this._F_highestGrduateSch != value))
-				{
-					this.OnF_highestGrduateSchChanging(value);
-					this.SendPropertyChanging();
-					this._F_highestGrduateSch = value;
-					this.SendPropertyChanged("F_highestGrduateSch");
-					this.OnF_highestGrduateSchChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_titleBeginDate", DbType="Date")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=34)]
-		public System.Nullable<System.DateTime> F_titleBeginDate
-		{
-			get
-			{
-				return this._F_titleBeginDate;
-			}
-			set
-			{
-				if ((this._F_titleBeginDate != value))
-				{
-					this.OnF_titleBeginDateChanging(value);
-					this.SendPropertyChanging();
-					this._F_titleBeginDate = value;
-					this.SendPropertyChanged("F_titleBeginDate");
-					this.OnF_titleBeginDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_resume", DbType="NText", UpdateCheck=UpdateCheck.Never)]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=35)]
-		public string F_resume
-		{
-			get
-			{
-				return this._F_resume;
-			}
-			set
-			{
-				if ((this._F_resume != value))
-				{
-					this.OnF_resumeChanging(value);
-					this.SendPropertyChanging();
-					this._F_resume = value;
-					this.SendPropertyChanged("F_resume");
-					this.OnF_resumeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_rwdandpunishmt", DbType="NText", UpdateCheck=UpdateCheck.Never)]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=36)]
-		public string F_rwdandpunishmt
-		{
-			get
-			{
-				return this._F_rwdandpunishmt;
-			}
-			set
-			{
-				if ((this._F_rwdandpunishmt != value))
-				{
-					this.OnF_rwdandpunishmtChanging(value);
-					this.SendPropertyChanging();
-					this._F_rwdandpunishmt = value;
-					this.SendPropertyChanged("F_rwdandpunishmt");
-					this.OnF_rwdandpunishmtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_lastModifyTime", DbType="DateTime")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=37)]
-		public System.Nullable<System.DateTime> F_lastModifyTime
-		{
-			get
-			{
-				return this._F_lastModifyTime;
-			}
-			set
-			{
-				if ((this._F_lastModifyTime != value))
-				{
-					this.OnF_lastModifyTimeChanging(value);
-					this.SendPropertyChanging();
-					this._F_lastModifyTime = value;
-					this.SendPropertyChanged("F_lastModifyTime");
-					this.OnF_lastModifyTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_posBeginDate", DbType="DateTime")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=38)]
-		public System.Nullable<System.DateTime> F_posBeginDate
-		{
-			get
-			{
-				return this._F_posBeginDate;
-			}
-			set
-			{
-				if ((this._F_posBeginDate != value))
-				{
-					this.OnF_posBeginDateChanging(value);
-					this.SendPropertyChanging();
-					this._F_posBeginDate = value;
-					this.SendPropertyChanged("F_posBeginDate");
-					this.OnF_posBeginDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_adminRanking", DbType="NVarChar(30)")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=39)]
-		public string F_adminRanking
-		{
-			get
-			{
-				return this._F_adminRanking;
-			}
-			set
-			{
-				if ((this._F_adminRanking != value))
-				{
-					this.OnF_adminRankingChanging(value);
-					this.SendPropertyChanging();
-					this._F_adminRanking = value;
-					this.SendPropertyChanged("F_adminRanking");
-					this.OnF_adminRankingChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_adminRkBeginDate", DbType="DateTime")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=40)]
-		public System.Nullable<System.DateTime> F_adminRkBeginDate
-		{
-			get
-			{
-				return this._F_adminRkBeginDate;
-			}
-			set
-			{
-				if ((this._F_adminRkBeginDate != value))
-				{
-					this.OnF_adminRkBeginDateChanging(value);
-					this.SendPropertyChanging();
-					this._F_adminRkBeginDate = value;
-					this.SendPropertyChanged("F_adminRkBeginDate");
-					this.OnF_adminRkBeginDateChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void Initialize()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
-		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
-		public void OnDeserializing(StreamingContext context)
-		{
-			this.Initialize();
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StaffFamilyMember")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
 	public partial class StaffFamilyMember : INotifyPropertyChanging, INotifyPropertyChanged
@@ -5371,6 +4320,1082 @@ namespace EducationV2
 					this._F_comment = value;
 					this.SendPropertyChanged("F_comment");
 					this.OnF_commentChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void Initialize()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Staff")]
+	[global::System.Runtime.Serialization.DataContractAttribute()]
+	public partial class Staff : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _F_StaffID;
+		
+		private string _F_UserID;
+		
+		private string _F_userName;
+		
+		private string _F_pwd;
+		
+		private string _F_realName;
+		
+		private string _F_sexual;
+		
+		private string _F_idType;
+		
+		private string _F_idNumber;
+		
+		private string _F_workDept;
+		
+		private string _F_phone;
+		
+		private string _F_mobile;
+		
+		private string _F_highestDegree;
+		
+		private string _F_highestEducation;
+		
+		private string _F_nationality;
+		
+		private System.Nullable<System.DateTime> _F_birthday;
+		
+		private string _F_position;
+		
+		private string _F_title;
+		
+		private string _F_freeAddress;
+		
+		private string _F_phone2;
+		
+		private string _F_fax;
+		
+		private string _F_email;
+		
+		private string _F_mostFamiliarSubject;
+		
+		private string _F_familiarSubject1;
+		
+		private string _F_familiarSubject2;
+		
+		private string _F_Role;
+		
+		private string _F_status;
+		
+		private string _F_belongDeptID;
+		
+		private string _F_bornplace;
+		
+		private string _F_nativeplace;
+		
+		private string _F_party;
+		
+		private System.Nullable<System.DateTime> _F_partyEntryDate;
+		
+		private System.Nullable<System.DateTime> _F_workBeginDate;
+		
+		private string _F_highestGrduateSch;
+		
+		private System.Nullable<System.DateTime> _F_titleBeginDate;
+		
+		private string _F_resume;
+		
+		private string _F_rwdandpunishmt;
+		
+		private System.Nullable<System.DateTime> _F_lastModifyTime;
+		
+		private System.Nullable<System.DateTime> _F_posBeginDate;
+		
+		private string _F_adminRanking;
+		
+		private System.Nullable<System.DateTime> _F_adminRkBeginDate;
+		
+		private string _F_empno;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnF_StaffIDChanging(string value);
+    partial void OnF_StaffIDChanged();
+    partial void OnF_UserIDChanging(string value);
+    partial void OnF_UserIDChanged();
+    partial void OnF_userNameChanging(string value);
+    partial void OnF_userNameChanged();
+    partial void OnF_pwdChanging(string value);
+    partial void OnF_pwdChanged();
+    partial void OnF_realNameChanging(string value);
+    partial void OnF_realNameChanged();
+    partial void OnF_sexualChanging(string value);
+    partial void OnF_sexualChanged();
+    partial void OnF_idTypeChanging(string value);
+    partial void OnF_idTypeChanged();
+    partial void OnF_idNumberChanging(string value);
+    partial void OnF_idNumberChanged();
+    partial void OnF_workDeptChanging(string value);
+    partial void OnF_workDeptChanged();
+    partial void OnF_phoneChanging(string value);
+    partial void OnF_phoneChanged();
+    partial void OnF_mobileChanging(string value);
+    partial void OnF_mobileChanged();
+    partial void OnF_highestDegreeChanging(string value);
+    partial void OnF_highestDegreeChanged();
+    partial void OnF_highestEducationChanging(string value);
+    partial void OnF_highestEducationChanged();
+    partial void OnF_nationalityChanging(string value);
+    partial void OnF_nationalityChanged();
+    partial void OnF_birthdayChanging(System.Nullable<System.DateTime> value);
+    partial void OnF_birthdayChanged();
+    partial void OnF_positionChanging(string value);
+    partial void OnF_positionChanged();
+    partial void OnF_titleChanging(string value);
+    partial void OnF_titleChanged();
+    partial void OnF_freeAddressChanging(string value);
+    partial void OnF_freeAddressChanged();
+    partial void OnF_phone2Changing(string value);
+    partial void OnF_phone2Changed();
+    partial void OnF_faxChanging(string value);
+    partial void OnF_faxChanged();
+    partial void OnF_emailChanging(string value);
+    partial void OnF_emailChanged();
+    partial void OnF_mostFamiliarSubjectChanging(string value);
+    partial void OnF_mostFamiliarSubjectChanged();
+    partial void OnF_familiarSubject1Changing(string value);
+    partial void OnF_familiarSubject1Changed();
+    partial void OnF_familiarSubject2Changing(string value);
+    partial void OnF_familiarSubject2Changed();
+    partial void OnF_RoleChanging(string value);
+    partial void OnF_RoleChanged();
+    partial void OnF_statusChanging(string value);
+    partial void OnF_statusChanged();
+    partial void OnF_belongDeptIDChanging(string value);
+    partial void OnF_belongDeptIDChanged();
+    partial void OnF_bornplaceChanging(string value);
+    partial void OnF_bornplaceChanged();
+    partial void OnF_nativeplaceChanging(string value);
+    partial void OnF_nativeplaceChanged();
+    partial void OnF_partyChanging(string value);
+    partial void OnF_partyChanged();
+    partial void OnF_partyEntryDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnF_partyEntryDateChanged();
+    partial void OnF_workBeginDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnF_workBeginDateChanged();
+    partial void OnF_highestGrduateSchChanging(string value);
+    partial void OnF_highestGrduateSchChanged();
+    partial void OnF_titleBeginDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnF_titleBeginDateChanged();
+    partial void OnF_resumeChanging(string value);
+    partial void OnF_resumeChanged();
+    partial void OnF_rwdandpunishmtChanging(string value);
+    partial void OnF_rwdandpunishmtChanged();
+    partial void OnF_lastModifyTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnF_lastModifyTimeChanged();
+    partial void OnF_posBeginDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnF_posBeginDateChanged();
+    partial void OnF_adminRankingChanging(string value);
+    partial void OnF_adminRankingChanged();
+    partial void OnF_adminRkBeginDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnF_adminRkBeginDateChanged();
+    partial void OnF_empnoChanging(string value);
+    partial void OnF_empnoChanged();
+    #endregion
+		
+		public Staff()
+		{
+			this.Initialize();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_StaffID", DbType="NChar(36) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+		public string F_StaffID
+		{
+			get
+			{
+				return this._F_StaffID;
+			}
+			set
+			{
+				if ((this._F_StaffID != value))
+				{
+					this.OnF_StaffIDChanging(value);
+					this.SendPropertyChanging();
+					this._F_StaffID = value;
+					this.SendPropertyChanged("F_StaffID");
+					this.OnF_StaffIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_UserID", DbType="NChar(36)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+		public string F_UserID
+		{
+			get
+			{
+				return this._F_UserID;
+			}
+			set
+			{
+				if ((this._F_UserID != value))
+				{
+					this.OnF_UserIDChanging(value);
+					this.SendPropertyChanging();
+					this._F_UserID = value;
+					this.SendPropertyChanged("F_UserID");
+					this.OnF_UserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_userName", DbType="VarChar(32)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+		public string F_userName
+		{
+			get
+			{
+				return this._F_userName;
+			}
+			set
+			{
+				if ((this._F_userName != value))
+				{
+					this.OnF_userNameChanging(value);
+					this.SendPropertyChanging();
+					this._F_userName = value;
+					this.SendPropertyChanged("F_userName");
+					this.OnF_userNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_pwd", DbType="VarChar(32)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+		public string F_pwd
+		{
+			get
+			{
+				return this._F_pwd;
+			}
+			set
+			{
+				if ((this._F_pwd != value))
+				{
+					this.OnF_pwdChanging(value);
+					this.SendPropertyChanging();
+					this._F_pwd = value;
+					this.SendPropertyChanged("F_pwd");
+					this.OnF_pwdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_realName", DbType="NVarChar(20)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+		public string F_realName
+		{
+			get
+			{
+				return this._F_realName;
+			}
+			set
+			{
+				if ((this._F_realName != value))
+				{
+					this.OnF_realNameChanging(value);
+					this.SendPropertyChanging();
+					this._F_realName = value;
+					this.SendPropertyChanged("F_realName");
+					this.OnF_realNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_sexual", DbType="Char(2)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6)]
+		public string F_sexual
+		{
+			get
+			{
+				return this._F_sexual;
+			}
+			set
+			{
+				if ((this._F_sexual != value))
+				{
+					this.OnF_sexualChanging(value);
+					this.SendPropertyChanging();
+					this._F_sexual = value;
+					this.SendPropertyChanged("F_sexual");
+					this.OnF_sexualChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_idType", DbType="VarChar(10)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=7)]
+		public string F_idType
+		{
+			get
+			{
+				return this._F_idType;
+			}
+			set
+			{
+				if ((this._F_idType != value))
+				{
+					this.OnF_idTypeChanging(value);
+					this.SendPropertyChanging();
+					this._F_idType = value;
+					this.SendPropertyChanged("F_idType");
+					this.OnF_idTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_idNumber", DbType="VarChar(20)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
+		public string F_idNumber
+		{
+			get
+			{
+				return this._F_idNumber;
+			}
+			set
+			{
+				if ((this._F_idNumber != value))
+				{
+					this.OnF_idNumberChanging(value);
+					this.SendPropertyChanging();
+					this._F_idNumber = value;
+					this.SendPropertyChanged("F_idNumber");
+					this.OnF_idNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_workDept", DbType="NVarChar(40)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9)]
+		public string F_workDept
+		{
+			get
+			{
+				return this._F_workDept;
+			}
+			set
+			{
+				if ((this._F_workDept != value))
+				{
+					this.OnF_workDeptChanging(value);
+					this.SendPropertyChanging();
+					this._F_workDept = value;
+					this.SendPropertyChanged("F_workDept");
+					this.OnF_workDeptChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_phone", DbType="VarChar(30)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10)]
+		public string F_phone
+		{
+			get
+			{
+				return this._F_phone;
+			}
+			set
+			{
+				if ((this._F_phone != value))
+				{
+					this.OnF_phoneChanging(value);
+					this.SendPropertyChanging();
+					this._F_phone = value;
+					this.SendPropertyChanged("F_phone");
+					this.OnF_phoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_mobile", DbType="VarChar(20)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=11)]
+		public string F_mobile
+		{
+			get
+			{
+				return this._F_mobile;
+			}
+			set
+			{
+				if ((this._F_mobile != value))
+				{
+					this.OnF_mobileChanging(value);
+					this.SendPropertyChanging();
+					this._F_mobile = value;
+					this.SendPropertyChanged("F_mobile");
+					this.OnF_mobileChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_highestDegree", DbType="VarChar(10)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=12)]
+		public string F_highestDegree
+		{
+			get
+			{
+				return this._F_highestDegree;
+			}
+			set
+			{
+				if ((this._F_highestDegree != value))
+				{
+					this.OnF_highestDegreeChanging(value);
+					this.SendPropertyChanging();
+					this._F_highestDegree = value;
+					this.SendPropertyChanged("F_highestDegree");
+					this.OnF_highestDegreeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_highestEducation", DbType="VarChar(10)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=13)]
+		public string F_highestEducation
+		{
+			get
+			{
+				return this._F_highestEducation;
+			}
+			set
+			{
+				if ((this._F_highestEducation != value))
+				{
+					this.OnF_highestEducationChanging(value);
+					this.SendPropertyChanging();
+					this._F_highestEducation = value;
+					this.SendPropertyChanged("F_highestEducation");
+					this.OnF_highestEducationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_nationality", DbType="VarChar(10)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=14)]
+		public string F_nationality
+		{
+			get
+			{
+				return this._F_nationality;
+			}
+			set
+			{
+				if ((this._F_nationality != value))
+				{
+					this.OnF_nationalityChanging(value);
+					this.SendPropertyChanging();
+					this._F_nationality = value;
+					this.SendPropertyChanged("F_nationality");
+					this.OnF_nationalityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_birthday", DbType="Date")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=15)]
+		public System.Nullable<System.DateTime> F_birthday
+		{
+			get
+			{
+				return this._F_birthday;
+			}
+			set
+			{
+				if ((this._F_birthday != value))
+				{
+					this.OnF_birthdayChanging(value);
+					this.SendPropertyChanging();
+					this._F_birthday = value;
+					this.SendPropertyChanged("F_birthday");
+					this.OnF_birthdayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_position", DbType="NVarChar(50)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=16)]
+		public string F_position
+		{
+			get
+			{
+				return this._F_position;
+			}
+			set
+			{
+				if ((this._F_position != value))
+				{
+					this.OnF_positionChanging(value);
+					this.SendPropertyChanging();
+					this._F_position = value;
+					this.SendPropertyChanged("F_position");
+					this.OnF_positionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_title", DbType="NVarChar(50)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=17)]
+		public string F_title
+		{
+			get
+			{
+				return this._F_title;
+			}
+			set
+			{
+				if ((this._F_title != value))
+				{
+					this.OnF_titleChanging(value);
+					this.SendPropertyChanging();
+					this._F_title = value;
+					this.SendPropertyChanged("F_title");
+					this.OnF_titleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_freeAddress", DbType="NVarChar(50)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=18)]
+		public string F_freeAddress
+		{
+			get
+			{
+				return this._F_freeAddress;
+			}
+			set
+			{
+				if ((this._F_freeAddress != value))
+				{
+					this.OnF_freeAddressChanging(value);
+					this.SendPropertyChanging();
+					this._F_freeAddress = value;
+					this.SendPropertyChanged("F_freeAddress");
+					this.OnF_freeAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_phone2", DbType="VarChar(20)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=19)]
+		public string F_phone2
+		{
+			get
+			{
+				return this._F_phone2;
+			}
+			set
+			{
+				if ((this._F_phone2 != value))
+				{
+					this.OnF_phone2Changing(value);
+					this.SendPropertyChanging();
+					this._F_phone2 = value;
+					this.SendPropertyChanged("F_phone2");
+					this.OnF_phone2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_fax", DbType="VarChar(20)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=20)]
+		public string F_fax
+		{
+			get
+			{
+				return this._F_fax;
+			}
+			set
+			{
+				if ((this._F_fax != value))
+				{
+					this.OnF_faxChanging(value);
+					this.SendPropertyChanging();
+					this._F_fax = value;
+					this.SendPropertyChanged("F_fax");
+					this.OnF_faxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_email", DbType="VarChar(30)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=21)]
+		public string F_email
+		{
+			get
+			{
+				return this._F_email;
+			}
+			set
+			{
+				if ((this._F_email != value))
+				{
+					this.OnF_emailChanging(value);
+					this.SendPropertyChanging();
+					this._F_email = value;
+					this.SendPropertyChanged("F_email");
+					this.OnF_emailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_mostFamiliarSubject", DbType="VarChar(50)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=22)]
+		public string F_mostFamiliarSubject
+		{
+			get
+			{
+				return this._F_mostFamiliarSubject;
+			}
+			set
+			{
+				if ((this._F_mostFamiliarSubject != value))
+				{
+					this.OnF_mostFamiliarSubjectChanging(value);
+					this.SendPropertyChanging();
+					this._F_mostFamiliarSubject = value;
+					this.SendPropertyChanged("F_mostFamiliarSubject");
+					this.OnF_mostFamiliarSubjectChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_familiarSubject1", DbType="VarChar(50)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=23)]
+		public string F_familiarSubject1
+		{
+			get
+			{
+				return this._F_familiarSubject1;
+			}
+			set
+			{
+				if ((this._F_familiarSubject1 != value))
+				{
+					this.OnF_familiarSubject1Changing(value);
+					this.SendPropertyChanging();
+					this._F_familiarSubject1 = value;
+					this.SendPropertyChanged("F_familiarSubject1");
+					this.OnF_familiarSubject1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_familiarSubject2", DbType="VarChar(50)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=24)]
+		public string F_familiarSubject2
+		{
+			get
+			{
+				return this._F_familiarSubject2;
+			}
+			set
+			{
+				if ((this._F_familiarSubject2 != value))
+				{
+					this.OnF_familiarSubject2Changing(value);
+					this.SendPropertyChanging();
+					this._F_familiarSubject2 = value;
+					this.SendPropertyChanged("F_familiarSubject2");
+					this.OnF_familiarSubject2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_Role", DbType="VarChar(20)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=25)]
+		public string F_Role
+		{
+			get
+			{
+				return this._F_Role;
+			}
+			set
+			{
+				if ((this._F_Role != value))
+				{
+					this.OnF_RoleChanging(value);
+					this.SendPropertyChanging();
+					this._F_Role = value;
+					this.SendPropertyChanged("F_Role");
+					this.OnF_RoleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_status", DbType="VarChar(10)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=26)]
+		public string F_status
+		{
+			get
+			{
+				return this._F_status;
+			}
+			set
+			{
+				if ((this._F_status != value))
+				{
+					this.OnF_statusChanging(value);
+					this.SendPropertyChanging();
+					this._F_status = value;
+					this.SendPropertyChanged("F_status");
+					this.OnF_statusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_belongDeptID", DbType="NChar(36)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=27)]
+		public string F_belongDeptID
+		{
+			get
+			{
+				return this._F_belongDeptID;
+			}
+			set
+			{
+				if ((this._F_belongDeptID != value))
+				{
+					this.OnF_belongDeptIDChanging(value);
+					this.SendPropertyChanging();
+					this._F_belongDeptID = value;
+					this.SendPropertyChanged("F_belongDeptID");
+					this.OnF_belongDeptIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_bornplace", DbType="NVarChar(50)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=28)]
+		public string F_bornplace
+		{
+			get
+			{
+				return this._F_bornplace;
+			}
+			set
+			{
+				if ((this._F_bornplace != value))
+				{
+					this.OnF_bornplaceChanging(value);
+					this.SendPropertyChanging();
+					this._F_bornplace = value;
+					this.SendPropertyChanged("F_bornplace");
+					this.OnF_bornplaceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_nativeplace", DbType="NVarChar(30)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=29)]
+		public string F_nativeplace
+		{
+			get
+			{
+				return this._F_nativeplace;
+			}
+			set
+			{
+				if ((this._F_nativeplace != value))
+				{
+					this.OnF_nativeplaceChanging(value);
+					this.SendPropertyChanging();
+					this._F_nativeplace = value;
+					this.SendPropertyChanged("F_nativeplace");
+					this.OnF_nativeplaceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_party", DbType="NVarChar(20)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=30)]
+		public string F_party
+		{
+			get
+			{
+				return this._F_party;
+			}
+			set
+			{
+				if ((this._F_party != value))
+				{
+					this.OnF_partyChanging(value);
+					this.SendPropertyChanging();
+					this._F_party = value;
+					this.SendPropertyChanged("F_party");
+					this.OnF_partyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_partyEntryDate", DbType="Date")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=31)]
+		public System.Nullable<System.DateTime> F_partyEntryDate
+		{
+			get
+			{
+				return this._F_partyEntryDate;
+			}
+			set
+			{
+				if ((this._F_partyEntryDate != value))
+				{
+					this.OnF_partyEntryDateChanging(value);
+					this.SendPropertyChanging();
+					this._F_partyEntryDate = value;
+					this.SendPropertyChanged("F_partyEntryDate");
+					this.OnF_partyEntryDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_workBeginDate", DbType="Date")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=32)]
+		public System.Nullable<System.DateTime> F_workBeginDate
+		{
+			get
+			{
+				return this._F_workBeginDate;
+			}
+			set
+			{
+				if ((this._F_workBeginDate != value))
+				{
+					this.OnF_workBeginDateChanging(value);
+					this.SendPropertyChanging();
+					this._F_workBeginDate = value;
+					this.SendPropertyChanged("F_workBeginDate");
+					this.OnF_workBeginDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_highestGrduateSch", DbType="NChar(30)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=33)]
+		public string F_highestGrduateSch
+		{
+			get
+			{
+				return this._F_highestGrduateSch;
+			}
+			set
+			{
+				if ((this._F_highestGrduateSch != value))
+				{
+					this.OnF_highestGrduateSchChanging(value);
+					this.SendPropertyChanging();
+					this._F_highestGrduateSch = value;
+					this.SendPropertyChanged("F_highestGrduateSch");
+					this.OnF_highestGrduateSchChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_titleBeginDate", DbType="Date")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=34)]
+		public System.Nullable<System.DateTime> F_titleBeginDate
+		{
+			get
+			{
+				return this._F_titleBeginDate;
+			}
+			set
+			{
+				if ((this._F_titleBeginDate != value))
+				{
+					this.OnF_titleBeginDateChanging(value);
+					this.SendPropertyChanging();
+					this._F_titleBeginDate = value;
+					this.SendPropertyChanged("F_titleBeginDate");
+					this.OnF_titleBeginDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_resume", DbType="NText", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=35)]
+		public string F_resume
+		{
+			get
+			{
+				return this._F_resume;
+			}
+			set
+			{
+				if ((this._F_resume != value))
+				{
+					this.OnF_resumeChanging(value);
+					this.SendPropertyChanging();
+					this._F_resume = value;
+					this.SendPropertyChanged("F_resume");
+					this.OnF_resumeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_rwdandpunishmt", DbType="NText", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=36)]
+		public string F_rwdandpunishmt
+		{
+			get
+			{
+				return this._F_rwdandpunishmt;
+			}
+			set
+			{
+				if ((this._F_rwdandpunishmt != value))
+				{
+					this.OnF_rwdandpunishmtChanging(value);
+					this.SendPropertyChanging();
+					this._F_rwdandpunishmt = value;
+					this.SendPropertyChanged("F_rwdandpunishmt");
+					this.OnF_rwdandpunishmtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_lastModifyTime", DbType="DateTime")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=37)]
+		public System.Nullable<System.DateTime> F_lastModifyTime
+		{
+			get
+			{
+				return this._F_lastModifyTime;
+			}
+			set
+			{
+				if ((this._F_lastModifyTime != value))
+				{
+					this.OnF_lastModifyTimeChanging(value);
+					this.SendPropertyChanging();
+					this._F_lastModifyTime = value;
+					this.SendPropertyChanged("F_lastModifyTime");
+					this.OnF_lastModifyTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_posBeginDate", DbType="DateTime")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=38)]
+		public System.Nullable<System.DateTime> F_posBeginDate
+		{
+			get
+			{
+				return this._F_posBeginDate;
+			}
+			set
+			{
+				if ((this._F_posBeginDate != value))
+				{
+					this.OnF_posBeginDateChanging(value);
+					this.SendPropertyChanging();
+					this._F_posBeginDate = value;
+					this.SendPropertyChanged("F_posBeginDate");
+					this.OnF_posBeginDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_adminRanking", DbType="NVarChar(30)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=39)]
+		public string F_adminRanking
+		{
+			get
+			{
+				return this._F_adminRanking;
+			}
+			set
+			{
+				if ((this._F_adminRanking != value))
+				{
+					this.OnF_adminRankingChanging(value);
+					this.SendPropertyChanging();
+					this._F_adminRanking = value;
+					this.SendPropertyChanged("F_adminRanking");
+					this.OnF_adminRankingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_adminRkBeginDate", DbType="DateTime")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=40)]
+		public System.Nullable<System.DateTime> F_adminRkBeginDate
+		{
+			get
+			{
+				return this._F_adminRkBeginDate;
+			}
+			set
+			{
+				if ((this._F_adminRkBeginDate != value))
+				{
+					this.OnF_adminRkBeginDateChanging(value);
+					this.SendPropertyChanging();
+					this._F_adminRkBeginDate = value;
+					this.SendPropertyChanged("F_adminRkBeginDate");
+					this.OnF_adminRkBeginDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_F_empno", DbType="VarChar(10)")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=41)]
+		public string F_empno
+		{
+			get
+			{
+				return this._F_empno;
+			}
+			set
+			{
+				if ((this._F_empno != value))
+				{
+					this.OnF_empnoChanging(value);
+					this.SendPropertyChanging();
+					this._F_empno = value;
+					this.SendPropertyChanged("F_empno");
+					this.OnF_empnoChanged();
 				}
 			}
 		}

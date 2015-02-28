@@ -80,6 +80,7 @@ namespace EducationV2
         {
             List<String> posIDs = GetSelectedIDs();
             ExpertBll.AuthDepts(posIDs);
+            gvDept.DataSource = GetDataSource();
             gvDept.DataBind();
         }
 
@@ -87,6 +88,7 @@ namespace EducationV2
         {
             List<String> posIDs = GetSelectedIDs();
             ExpertBll.UnAuthDepts(posIDs);
+            gvDept.DataSource = GetDataSource();
             gvDept.DataBind();
         }
     }

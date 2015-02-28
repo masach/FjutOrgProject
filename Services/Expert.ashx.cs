@@ -103,7 +103,7 @@ namespace EducationV2
                 components.Add(component);
             }
             //申报管理，只要经过审核就可以申报
-            if (status.Equals(RoleType.Authoried))
+            if (status.Equals(InfoStatus.Authoried))
             {
                 ExtjsComponent component = new ExtjsComponent();
                 component.xtype = "panel";
@@ -182,11 +182,11 @@ namespace EducationV2
                 if (role.Equals(RoleType.Applicant) || role.Equals(RoleType.OrgDeptAdmin))
                 {
                     DeptMent dept = dc.DeptMent.SingleOrDefault(_dm => _dm.F_ID.Equals(user.F_belongDeptID));
-                    if (dept == null || dept.F_status != RoleType.Authoried || user.F_status != RoleType.Authoried)
-                        return RoleType.Draft;
+                    if (dept == null || dept.F_status != InfoStatus.Authoried || user.F_status != InfoStatus.Authoried)
+                        return InfoStatus.Draft;
                 }
             }
-            return RoleType.Authoried;
+            return InfoStatus.Authoried;
         }       
 
         private string GetBaseInfo()
@@ -317,7 +317,8 @@ namespace EducationV2
             if (String.IsNullOrEmpty(paras["F_workBeginDate"]) == false)
                 newUser.F_workBeginDate = DateTime.Parse(paras["F_workBeginDate"]);
 
-            newUser.F_workDept = paras["F_workDept"];
+            newUser.F_workDept = paras["F_workDeptText"];
+            newUser.F_belongDeptID = paras["F_workDept"];
             newUser.F_position = paras["F_position"];
             newUser.F_title = paras["F_title"];
 

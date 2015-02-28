@@ -142,10 +142,28 @@ namespace EducationV2
                 newStaff.F_StaffID = Guid.NewGuid().ToString();
                 insert = true;
             }
+            
+            newStaff.F_empno = paras["F_empno"];
+            if (String.IsNullOrWhiteSpace(newStaff.F_empno) == false)
+            {
+                Staff t = dc.Staff.SingleOrDefault(_staff => _staff.F_empno.Equals(newStaff.F_empno));
+                if (t != null && t.F_StaffID.Equals(newStaff.F_StaffID) == false)
+                {
+                    return "档案库中已存在相同的教工号";
+                }
+            }
 
-            newStaff.F_UserID = paras["F_UserID"];
-            newStaff.F_userName = paras["F_userName"];
-           
+            if (String.IsNullOrEmpty(paras["F_UserID"]) == false)
+            {
+                newStaff.F_UserID = paras["F_UserID"].ToString().Trim();
+                newStaff.F_userName = paras["F_userName"];
+            }
+            else
+            {
+                newStaff.F_UserID = createNewUser(dc);
+                newStaff.F_userName = paras["F_empno"];
+            }
+
             newStaff.F_realName = paras["F_realName"];
             newStaff.F_sexual = paras["F_sexual"];
             if (String.IsNullOrEmpty(paras["F_birthday"]) == false)
@@ -164,7 +182,9 @@ namespace EducationV2
             if (String.IsNullOrEmpty(paras["F_workBeginDate"]) == false)
                 newStaff.F_workBeginDate = DateTime.Parse(paras["F_workBeginDate"]);
 
-            newStaff.F_workDept = paras["F_workDept"];
+            newStaff.F_workDept = paras["F_workDeptText"];
+            newStaff.F_belongDeptID = paras["F_workDept"];
+           
             newStaff.F_position = paras["F_position"];
             newStaff.F_title = paras["F_title"];
 
@@ -181,7 +201,7 @@ namespace EducationV2
                 Staff t = dc.Staff.SingleOrDefault(_staff => _staff.F_idType.Equals(newStaff.F_idType) && _staff.F_idNumber.Equals(newStaff.F_idNumber));
                 if (t != null && t.F_StaffID.Equals(newStaff.F_StaffID) == false)
                 {
-                    return "系统中已存在相同的证件号和证件名";
+                    return "档案库中已存在相同的证件号和证件名";
                 }
             }
             newStaff.F_mobile = paras["F_mobile"];
@@ -191,7 +211,7 @@ namespace EducationV2
             newStaff.F_email = paras["F_email"];
             newStaff.F_freeAddress = paras["F_freeAddress"];
             newStaff.F_fax = paras["F_fax"];
-
+     
             newStaff.F_status = paras["F_status"];
             newStaff.F_lastModifyTime = DateTime.Now;            
 
@@ -202,6 +222,76 @@ namespace EducationV2
             return UtilHelper.GetJSON(newStaff);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dc"></param>
+        /// <returns>新用户的id</returns>
+        private string createNewUser(DataClassesDataContext dc)
+        {
+            // 创建新用户
+            User newUser = new User();
+            newUser.F_Role = RoleType.Applicant;
+            newUser.F_ID = Guid.NewGuid().ToString();
+
+            newUser.F_userName = paras["F_empno"];// 教工号即username，密码同教工号
+            newUser.F_pwd = UtilHelper.MD5Encrypt(newUser.F_userName);
+
+            newUser.F_realName = paras["F_realName"];
+            newUser.F_sexual = paras["F_sexual"];
+            if (String.IsNullOrEmpty(paras["F_birthday"]) == false)
+                newUser.F_birthday = DateTime.Parse(paras["F_birthday"]);
+            newUser.F_bornplace = paras["F_bornplace"];
+
+            newUser.F_nativeplace = paras["F_nativeplace"];
+            newUser.F_nationality = paras["F_nationality"];
+            newUser.F_party = paras["F_party"];
+            if (String.IsNullOrEmpty(paras["F_partyEntryDate"]) == false)
+                newUser.F_partyEntryDate = DateTime.Parse(paras["F_partyEntryDate"]);
+
+            newUser.F_highestDegree = paras["F_highestDegree"];
+            newUser.F_highestEducation = paras["F_highestEducation"];
+            newUser.F_highestGrduateSch = paras["F_highestGrduateSch"];
+            if (String.IsNullOrEmpty(paras["F_workBeginDate"]) == false)
+                newUser.F_workBeginDate = DateTime.Parse(paras["F_workBeginDate"]);
+
+            newUser.F_workDept = paras["F_workDeptText"];
+            newUser.F_belongDeptID = paras["F_workDept"];
+           
+            newUser.F_position = paras["F_position"];
+            newUser.F_title = paras["F_title"];
+
+            if (String.IsNullOrEmpty(paras["F_posBeginDate"]) == false)
+                newUser.F_posBeginDate = DateTime.Parse(paras["F_posBeginDate"]);
+            newUser.F_adminRanking = paras["F_adminRanking"];
+            if (String.IsNullOrEmpty(paras["F_adminRkBeginDate"]) == false)
+                newUser.F_adminRkBeginDate = DateTime.Parse(paras["F_adminRkBeginDate"]);
+
+            newUser.F_idType = paras["F_idType"];
+            newUser.F_idNumber = paras["F_idNumber"];
+            if (String.IsNullOrWhiteSpace(newUser.F_idNumber) == false)
+            {
+                User t = dc.User.SingleOrDefault(_staff => _staff.F_idType.Equals(newUser.F_idType) && _staff.F_idNumber.Equals(newUser.F_idNumber));
+                if (t != null && t.F_ID.Equals(newUser.F_ID) == false)
+                {
+                    return "该证件号和证件名已被其他用户使用";
+                }
+            }
+            newUser.F_mobile = paras["F_mobile"];
+            newUser.F_phone = paras["F_phone"];
+
+            newUser.F_phone2 = paras["F_phone2"];
+            newUser.F_email = paras["F_email"];
+            newUser.F_freeAddress = paras["F_freeAddress"];
+            newUser.F_fax = paras["F_fax"];
+
+            // 在此处自动创建的用户默认为“审核通过”
+            newUser.F_status = InfoStatus.Authoried;
+            newUser.F_lastModifyTime = DateTime.Now;
+
+            dc.User.InsertOnSubmit(newUser);
+            return newUser.F_ID;
+        }
         private String savePage3()
         {            
             context.Response.ContentType = "text/plain";

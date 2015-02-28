@@ -22,7 +22,7 @@
                 </tr>
                 <tr>
                     <td class="field">
-                        用户名
+                        关联用户
                     </td>
                     <td width="13%">
                         <input name="F_userName" id="F_userName" type="text" readonly="readonly" onclick="findUser()" />
@@ -30,14 +30,17 @@
                     <td class="field">
                         用户编号:
                     </td>
-                    <td width="13%">
+                    <td width="13%" name="F_UserID" id="F_UserID">
+                    <!--
                         <input name="F_UserID" id="F_UserID" type="text" readonly="readonly" />
+                        -->
                     </td>
                     <td class="field">
                         档案编号:
                     </td>
-                    <td width="13%">
-                        <input name="F_StaffID" id="F_StaffID" type="text" readonly="readonly" />
+                    <td width="13%" name="F_StaffID" id="F_StaffID">
+                    <!--
+                        <input name="F_StaffID" id="F_StaffID" type="text" readonly="readonly" />-->
                     </td>
                     <td class="field">
                         归档时间:
@@ -154,9 +157,9 @@
                         现工作部门
                     </td>
                     <td>
-                        <input id="F_belongDeptID" name="F_belongDeptID" type="hidden" />
+                       <%--  <input id="F_belongDeptID" name="F_belongDeptID" type="hidden" />--%>
                         <asp:DropDownList ID="F_workDept" name="F_workDept" runat="server" DataSourceID="DeptDataSource"
-                            DataTextField="F_name" DataValueField="F_name" ClientIDMode="Static" CssClass="t_tabletxt"
+                            DataTextField="F_name" DataValueField="F_ID" ClientIDMode="Static" CssClass="t_tabletxt validate[required]"
                             Style="width: 85%">
                         </asp:DropDownList>
                     </td>
@@ -260,6 +263,12 @@
                     <td>
                         <input type="text" name="F_fax" id="F_fax" value="" style="width: 85%;" class="t_tabletxt" />
                     </td>
+                       <td>
+                           教工号
+                    </td>
+                    <td>
+                        <input type="text" name="F_empno" id="F_empno" value="" style="width: 85%;" class="t_tabletxt validate[required]" />
+                    </td>
                     <td>
                         审核状态
                     </td>
@@ -269,8 +278,7 @@
                             <option value="待审核">待审核</option>
                         </select>
                     </td>
-                    <td colspan="5">
-                    </td>
+                 
                 </tr>
             </table>
             </form>
@@ -312,7 +320,7 @@
         function addUser(strUser) {
             var user = JSON.parse(strUser);
             //alert(user.F_ID);
-            $("#F_UserID", '#frmPage1').val(user.F_ID);
+            $("#F_UserID", '#frmPage1').text(user.F_ID);
             $("#F_userName", '#frmPage1').val(user.F_userName);
         }
 

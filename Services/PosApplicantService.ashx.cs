@@ -82,9 +82,9 @@ namespace EducationV2.Services
             }
 
             ViewPosApl vapl = dc.ViewPosApl.SingleOrDefault(x => x.F_ID.Equals(id) 
-                 && ((x.F_endDate1 == null ? true : (x.F_endDate1.Value.Date > DateTime.Now.Date))
-                      && (x.F_endDate2 == null ? true : (x.F_endDate2.Value.Date > DateTime.Now.Date))
-                      && (x.F_endDate3 == null ? true : (x.F_endDate3.Value.Date > DateTime.Now.Date))
+                 && ((x.F_endDate1 == null ? true : (x.F_endDate1.Value.Date >= DateTime.Now.Date))
+                      && (x.F_endDate2 == null ? true : (x.F_endDate2.Value.Date >= DateTime.Now.Date))
+                      && (x.F_endDate3 == null ? true : (x.F_endDate3.Value.Date >= DateTime.Now.Date))
                      )
                 );
             if (null == vapl)

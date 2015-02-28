@@ -15,10 +15,10 @@ namespace EducationV2
             if (!IsPostBack)
             {
                 
-                if("sciPage1".Equals(Request.Params["requestPage"]) ||  "socialPage1".Equals(Request.Params["requestPage"]))
-                {
-                    tabAddUser.Visible = false;
-                }                
+                //if("sciPage1".Equals(Request.Params["requestPage"]) ||  "socialPage1".Equals(Request.Params["requestPage"]))
+                //{
+                //    tabAddUser.Visible = false;
+                //}                
             }
         }
 
@@ -36,12 +36,15 @@ namespace EducationV2
             {
                 user = dc.User.SingleOrDefault(_user => _user.F_ID.Equals(txtKeyword.Text.Trim()));
             }
-                
+
             if (user != null)
             {
                 // 这样获取的result字符串有很多\/之类的玩意，会传不到前端哦
                 //> TODO
-                String result = UtilHelper.GetJSON(user);
+                User p_user = new User();
+                p_user.F_ID = user.F_ID;
+                p_user.F_userName = user.F_userName;
+                String result = UtilHelper.GetJSON(p_user);
 
                 Response.Write("<script> window.opener.addUser('" + result + "'); window.close();</script>");
             }
@@ -74,43 +77,43 @@ namespace EducationV2
 
         }
 
-        protected void btnAdd_Click(object sender, EventArgs e)
-        {
-            DataClassesDataContext dc = new DataClassesDataContext();
-            User user = dc.User.SingleOrDefault(_user => _user.F_userName.Equals(txtName.Text));
-            if (user != null)
-            {
-                Response.Write("<script>alert('该用户名已被使用');</script>");
-                return;
-            }
-            user = new EducationV2.User();
-            user.F_ID = Guid.NewGuid().ToString();
-            user.F_status = ddlStatus.SelectedValue;
+        //protected void btnAdd_Click(object sender, EventArgs e)
+        //{
+        //    DataClassesDataContext dc = new DataClassesDataContext();
+        //    User user = dc.User.SingleOrDefault(_user => _user.F_userName.Equals(txtName.Text));
+        //    if (user != null)
+        //    {
+        //        Response.Write("<script>alert('该用户名已被使用');</script>");
+        //        return;
+        //    }
+        //    user = new EducationV2.User();
+        //    user.F_ID = Guid.NewGuid().ToString();
+        //    user.F_status = ddlStatus.SelectedValue;
 
-            user.F_belongDeptID = ddlBelongDept.SelectedValue;
+        //    user.F_belongDeptID = ddlBelongDept.SelectedValue;
 
-            user.F_Role = ddlRole.SelectedValue;
-            user.F_realName = txtRealName.Text;
-            user.F_pwd = UtilHelper.MD5Encrypt(txtPwd.Text);
-            user.F_userName = txtName.Text;
-            user.F_lastModifyTime = DateTime.Now;
-            //user.F_belongUnitID = Session[SessionMgm.UnitID].ToString();
-            dc.User.InsertOnSubmit(user);
-            dc.SubmitChanges();
-            String result = UtilHelper.GetJSON(user);
-            Response.Write("<script> window.opener.addUser('" + result + "'); window.close();</script>");
+        //    user.F_Role = ddlRole.SelectedValue;
+        //    user.F_realName = txtRealName.Text;
+        //    user.F_pwd = UtilHelper.MD5Encrypt(txtPwd.Text);
+        //    user.F_userName = txtName.Text;
+        //    user.F_lastModifyTime = DateTime.Now;
+        //    //user.F_belongUnitID = Session[SessionMgm.UnitID].ToString();
+        //    dc.User.InsertOnSubmit(user);
+        //    dc.SubmitChanges();
+        //    String result = UtilHelper.GetJSON(user);
+        //    Response.Write("<script> window.opener.addUser('" + result + "'); window.close();</script>");
 
-        }
+        //}
 
-        protected void ddlRole_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlRole.SelectedValue.Equals(RoleType.OrgDeptAdmin))
-            {
-                ddlBelongDept.Enabled = false;
-            }
-            else
-                ddlBelongDept.Enabled = true;
+        //protected void ddlRole_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (ddlRole.SelectedValue.Equals(RoleType.OrgDeptAdmin))
+        //    {
+        //        ddlBelongDept.Enabled = false;
+        //    }
+        //    else
+        //        ddlBelongDept.Enabled = true;
 
-        }
+        //}
     }
 }

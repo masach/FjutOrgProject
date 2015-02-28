@@ -33,7 +33,7 @@
                 ConfirmText="是否删除所选中的记录？" Enabled="True" TargetControlID="btnDel">
             </ajaxToolkit:ConfirmButtonExtender>
             &nbsp;
-            <asp:Button ID="btnAuthor" runat="server" Text="通 过" class="btn" OnClick="btnAuthor_Click" />
+            <asp:Button ID="btnAuthor" runat="server" Text="通 过" CssClass="btn" OnClick="btnAuthor_Click" />
             &nbsp;
             <asp:Button ID="btnUnAuthor" runat="server" Text="不通过" OnClick="btnUnAuthor_Click"
                 CssClass="btn" />
@@ -49,7 +49,8 @@
             &nbsp;
             <asp:DropDownList ID="ddlType" runat="server">
             </asp:DropDownList>
-            &nbsp;&nbsp;<asp:TextBox ID="txtKeyword" runat="server"></asp:TextBox>&nbsp;&nbsp;<asp:Button
+            &nbsp;&nbsp;<asp:TextBox ID="txtKeyword" runat="server"></asp:TextBox>&nbsp;&nbsp;
+            <asp:Button
                 ID="btnSearch" runat="server" Text="检 索" OnClick="btnSearch_Click" CssClass="btn" />
             <p />
         </div>

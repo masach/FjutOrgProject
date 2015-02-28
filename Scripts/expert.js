@@ -78,8 +78,9 @@ function fillBaseInfo(succ) {
     $("#F_highestGrduateSch").val(succ.F_highestGrduateSch);
     $("#F_workBeginDate").val(ChangeDateFormat(succ.F_workBeginDate));
 
-    $("#F_workDept").val(succ.F_workDept);
-    //$("#F_workDept").val(succ.F_belongDeptID);
+    //$("#F_workDept").val(succ.F_workDept);
+    $("#F_workDept").val(succ.F_belongDeptID);
+
     $("#F_position").val(succ.F_position);
     $("#F_title").val(succ.F_title);
 
@@ -131,6 +132,10 @@ function savePage(page) {
     //        return false;
 
     var serRst = $('#frmPage' + page).serialize();
+    var wkdpt = $("#F_workDept").find("option:selected").text();
+    if (wkdpt != "" && wkdpt != undefined) {      
+        serRst = serRst + '&F_workDeptText=' + wkdpt;
+    }    
 
     $.ajax({
         type: 'POST',

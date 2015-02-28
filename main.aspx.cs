@@ -36,7 +36,7 @@ namespace EducationV2
             String status = GetStatus();
             List<ExtjsComponent> components = new List<ExtjsComponent>();
             StringBuilder sb = new StringBuilder();
-            //非申报都是管理员
+            //非申报者都是管理员
             if (!role.Equals(RoleType.Applicant))
             {
                 sb.Append("<div title=\"部门信息管理\">");
@@ -53,7 +53,7 @@ namespace EducationV2
                 sb.Append("</ul></div>");
             }
             //申报管理，只要经过审核就可以申报
-            if (status.Equals(RoleType.Authoried))
+            if (status.Equals(InfoStatus.Authoried))
             {
                 sb.Append("<div title=\"岗位申请管理\">");
                 sb.Append("<ul class=\"panel-ul\">");
@@ -82,16 +82,16 @@ namespace EducationV2
             String role = Session[SessionMgm.Role].ToString();
             User user = dc.User.SingleOrDefault(_user => _user.F_ID.Equals(userID));
             // 用于跟踪LINQ 冲突错误
-            dc.Log = new System.IO.StringWriter();
+            //dc.Log = new System.IO.StringWriter();
             if (role.Equals(RoleType.OrgDeptAdmin) || role.Equals(RoleType.Applicant))
             {
                 DeptMent dept = dc.DeptMent.SingleOrDefault(_dm => _dm.F_ID.Equals(user.F_belongDeptID));
-                string temp = dc.Log.ToString();
-                if (dept == null || dept.F_status != RoleType.Authoried || user.F_status != RoleType.Authoried)
-                    return RoleType.Draft;
+                //string temp = dc.Log.ToString();
+                if (dept == null || dept.F_status != InfoStatus.Authoried || user.F_status != InfoStatus.Authoried)
+                    return InfoStatus.Draft;
             }
             
-            return RoleType.Authoried;
+            return InfoStatus.Authoried;
         }
     }
 

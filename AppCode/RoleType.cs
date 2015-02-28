@@ -15,9 +15,13 @@ namespace EducationV2.App_Code
         public static String TeamAdmin = "团队负责人";
         public static String EduAdmin = "教育厅管理人员";
         public static String ProjectMember = "项目成员"; 
+      
+    }
 
+    public class InfoStatus
+    {
         public static String Draft = "未提交";
         public static String UnderAudit = "待审核";
-        public static String Authoried = "审核通过";
+        public static String Authoried = "审核通过";    
     }
 }

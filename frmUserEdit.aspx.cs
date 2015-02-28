@@ -35,10 +35,11 @@ namespace EducationV2
                     txtPwd.Text = user.F_pwd;
                     ddlRole.SelectedValue = user.F_Role;
                     ddlStatus.SelectedValue = user.F_status;
-                    if (ddlBelongDept.Items.FindByValue(user.F_belongDeptID) != null)
+                    //在这里ddlBelongDept.Items.Count居然为0 TODO:求解释
+                    //if (ddlBelongDept.Items.FindByValue(user.F_belongDeptID) != null)
                         ddlBelongDept.SelectedValue = user.F_belongDeptID;
-                    else
-                        ddlBelongDept.SelectedIndex = -1;
+                    //else
+                    //    ddlBelongDept.SelectedIndex = -1;
                     txtName.ReadOnly = true;
                 }
                 else
@@ -77,6 +78,7 @@ namespace EducationV2
             user.F_status = ddlStatus.SelectedValue;
 
             user.F_belongDeptID = ddlBelongDept.SelectedValue;
+            user.F_workDept = ddlBelongDept.SelectedItem.Text;
 
             user.F_Role = ddlRole.SelectedValue;
             user.F_realName = txtRealName.Text;

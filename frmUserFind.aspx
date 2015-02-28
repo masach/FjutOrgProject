@@ -112,6 +112,7 @@
             <ajaxToolkit:TabPanel ID="tabAddUser" runat="server" HeaderText="增加用户" OnClientClick="resizeWindow(800, 500)"  >
             <ContentTemplate>--%>
             </Hxj:TabItem>
+            <%--
             <Hxj:TabItem ID="tabAddUser" runat="server" Text="增加用户">
                 <table class="hold-table" width="700px" cellspacing="0" cellpadding="0" style="padding-left: 8px;">
                    <tr>
@@ -187,6 +188,9 @@
                    
                 </table>
             </Hxj:TabItem>
+
+
+            --%>
         </Hxj:TabControl>
         <%-- </ContentTemplate>
             </ajaxToolkit:TabPanel>

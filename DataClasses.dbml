@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FjutOrgDept" Class="DataClassesDataContext" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=10.10.123.5;Initial Catalog=FjutOrgDept;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="FjutOrgDeptConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=FJUT-NEIB53TG6R;Initial Catalog=FjutOrgDept;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="FjutOrgDeptConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.ViewPosApl" Member="ViewPosApl">
     <Type Name="ViewPosApl">
       <Column Name="F_ID" Type="System.String" DbType="NChar(36) NOT NULL" CanBeNull="false" />
@@ -166,6 +166,48 @@
       <Column Name="F_projectID" Type="System.String" DbType="Char(36)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.StaffFamilyMember" Member="StaffFamilyMember">
+    <Type Name="StaffFamilyMember">
+      <Column Name="F_MemID" Type="System.String" DbType="NChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="F_StaffID" Type="System.String" DbType="NChar(36)" CanBeNull="true" />
+      <Column Name="F_familyMemName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="F_familyMemBirthday" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="F_familyMemParty" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="F_familyMemWorkInfo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="F_familyMemAppelation" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UpdateApplicant" Member="UpdateApplicant">
+    <Type Name="UpdateApplicant">
+      <Column Name="F_ID" Type="System.String" DbType="NChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="F_projectID" Type="System.String" DbType="NChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="F_appliedDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="F_updateType" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="F_updateReason" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="F_beforeChange" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="F_beforeChangeAddition" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="F_afterChange" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="F_afterChangeAddition" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="F_status" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="F_statusEnum" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="F_schAuditOpinion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="F_schAuditLeader" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="F_schAuditDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="F_eduAuditOpinion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="F_eduAuditLeader" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="F_eduAuditDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Position" Member="Position">
+    <Type Name="Position">
+      <Column Name="F_ID" Type="System.String" DbType="NChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="F_posname" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="F_startDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="F_endDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="F_status" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="F_comment" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Staff" Member="Staff">
     <Type Name="Staff">
       <Column Name="F_StaffID" Type="System.String" DbType="NChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -208,48 +250,7 @@
       <Column Name="F_posBeginDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="F_adminRanking" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Column Name="F_adminRkBeginDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.StaffFamilyMember" Member="StaffFamilyMember">
-    <Type Name="StaffFamilyMember">
-      <Column Name="F_MemID" Type="System.String" DbType="NChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="F_StaffID" Type="System.String" DbType="NChar(36)" CanBeNull="true" />
-      <Column Name="F_familyMemName" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="F_familyMemBirthday" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="F_familyMemParty" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="F_familyMemWorkInfo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="F_familyMemAppelation" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.UpdateApplicant" Member="UpdateApplicant">
-    <Type Name="UpdateApplicant">
-      <Column Name="F_ID" Type="System.String" DbType="NChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="F_projectID" Type="System.String" DbType="NChar(36) NOT NULL" CanBeNull="false" />
-      <Column Name="F_appliedDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="F_updateType" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
-      <Column Name="F_updateReason" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="F_beforeChange" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="F_beforeChangeAddition" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="F_afterChange" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="F_afterChangeAddition" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="F_status" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="F_statusEnum" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="F_schAuditOpinion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="F_schAuditLeader" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="F_schAuditDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="F_eduAuditOpinion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="F_eduAuditLeader" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="F_eduAuditDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Position" Member="Position">
-    <Type Name="Position">
-      <Column Name="F_ID" Type="System.String" DbType="NChar(36) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="F_posname" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="F_startDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="F_endDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="F_status" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="F_comment" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="F_empno" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

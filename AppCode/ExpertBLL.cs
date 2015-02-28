@@ -33,7 +33,7 @@ namespace EducationV2.App_Code
             var Depts = dc.DeptMent.Where(_Dept => DeptIDs.Contains(_Dept.F_ID));
             foreach (var Dept in Depts)
             {
-                Dept.F_status = RoleType.Authoried;              
+                Dept.F_status = InfoStatus.Authoried;              
             }
             dc.SubmitChanges();
         }
@@ -44,7 +44,7 @@ namespace EducationV2.App_Code
             var Depts = dc.DeptMent.Where(_Dept => DeptIDs.Contains(_Dept.F_ID));
             foreach (var Dept in Depts)
             {
-                Dept.F_status = RoleType.UnderAudit;
+                Dept.F_status = InfoStatus.UnderAudit;
             }
             dc.SubmitChanges();
         }
@@ -66,7 +66,7 @@ namespace EducationV2.App_Code
             var users = dc.User.Where(_user => userIDs.Contains(_user.F_ID));
             foreach(var user in users)
             {
-                user.F_status = RoleType.Authoried;
+                user.F_status = InfoStatus.Authoried;
                 user.F_lastModifyTime = DateTime.Now;
             }
             dc.SubmitChanges();
@@ -79,7 +79,7 @@ namespace EducationV2.App_Code
                   && _user.F_Role.Equals(RoleType.OrgDeptDirector) == false);
             foreach (var user in users)
             {
-                user.F_status = RoleType.UnderAudit;
+                user.F_status = InfoStatus.UnderAudit;
                 user.F_lastModifyTime = DateTime.Now;
             }
             dc.SubmitChanges();
@@ -102,7 +102,7 @@ namespace EducationV2.App_Code
             var staffs = dc.Staff.Where(_staff => staffIDs.Contains(_staff.F_StaffID));
             foreach (var staff in staffs)
             {
-                staff.F_status = RoleType.Authoried;
+                staff.F_status = InfoStatus.Authoried;
                 staff.F_lastModifyTime = DateTime.Now;
             }
             dc.SubmitChanges();
@@ -114,7 +114,7 @@ namespace EducationV2.App_Code
             var staffs = dc.Staff.Where(_staff => staffIDs.Contains(_staff.F_StaffID));
             foreach (var staff in staffs)
             {
-                staff.F_status = RoleType.UnderAudit;
+                staff.F_status = InfoStatus.UnderAudit;
                 staff.F_lastModifyTime = DateTime.Now;
             }
             dc.SubmitChanges();
@@ -142,7 +142,7 @@ namespace EducationV2.App_Code
             var positions = dc.Position.Where(_pos => userIDs.Contains(_pos.F_ID));
             foreach (var pos in positions)
             {
-                pos.F_status = RoleType.Authoried;              
+                pos.F_status = InfoStatus.Authoried;              
             }
             dc.SubmitChanges();
         }
@@ -153,7 +153,7 @@ namespace EducationV2.App_Code
             var positions = dc.Position.Where(_pos => userIDs.Contains(_pos.F_ID));
             foreach (var pos in positions)
             {
-                pos.F_status = RoleType.UnderAudit;              
+                pos.F_status = InfoStatus.UnderAudit;              
             }
             dc.SubmitChanges();
         }
